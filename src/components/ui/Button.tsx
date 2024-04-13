@@ -24,6 +24,8 @@ export default function Button({
   );
 }
 
+console.log("hello");
+
 const buttonVariants = cva("rounded w-fit duration-300", {
   variants: {
     variant: {
