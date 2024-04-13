@@ -13,7 +13,7 @@ jobs:
           # verifies the number of passing tests
           # and passes a variable to Cypress
           # to be read using Cypress.env("lastName")
-          command: npm run start
+          command: npm run dev
         # when setting "plain" environment variables
         # if we want to pass Cypress to read them
         # we need to prefix them with "CYPRESS_"
