@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { cn } from "../../lib/utils";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+import Button from "../../components/ui/Button";
 
 const navLinks = [
   {
@@ -191,16 +192,10 @@ const Navbar = () => {
         </ul>
 
         <ul className="flex items-center gap-4 relative">
-          <motion.div
-            initial={{ opacity: 0, y: -15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            viewport={{
-              once: true,
-            }}
-            className="w-auto h-auto"
-          >
-            <button
+          <motion.div className="w-auto h-auto">
+            <Button
+              variant="tertiary"
+              size="sm"
               id="LanguageSelectorButton"
               onClick={() => setLanguageSelector(!languageSelector)}
               className={cn({
@@ -211,7 +206,7 @@ const Navbar = () => {
             >
               <Globe size={20} strokeWidth={1} />
               {i18n.language}
-            </button>
+            </Button>
           </motion.div>
           {languageSelector && (
             <div className="w-24 h-auto bg-white shadow absolute top-12 -left-2 rounded-lg flex flex-col gap-2 p-2">
@@ -244,31 +239,23 @@ const Navbar = () => {
               </button>
             </div>
           )}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            viewport={{
-              once: true,
-            }}
-            className="w-auto h-auto"
-          >
-            <Link to="/" className="">
-              {t("Login")}
-            </Link>
+          <motion.div className="w-auto h-auto">
+            <Button
+              variant="tertiary"
+              size="sm"
+              className="hover:bg-background"
+            >
+              <Link to="/sign-in" className="">
+                {t("Login")}
+              </Link>
+            </Button>
           </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
-            viewport={{
-              once: true,
-            }}
-            className="w-auto h-auto"
-          >
-            <Link to="/" className=" bg-text text-background px-8 py-2 rounded">
-              {t("Register")}
-            </Link>
+          <motion.div className="w-auto h-auto">
+            <Button variant="primary" size="md">
+              <Link to="/sign-up" className=" ">
+                {t("Register")}
+              </Link>
+            </Button>
           </motion.div>
         </ul>
       </nav>

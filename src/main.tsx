@@ -6,8 +6,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "./lang/i18n";
 import "./index.css";
+
 import PageNotFound from "./routeElements/PageNotFound.tsx";
 import Layout from "./routeElements/Layout.tsx";
+import Login from "./pages/Login.tsx";
+import Register from "./pages/Register.tsx";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +21,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <App />,
+      },
+      {
+        path: "/sign-in",
+        element: <Login />,
+      },
+      {
+        path: "/sign-up",
+        element: <Register />,
       },
     ],
   },

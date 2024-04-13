@@ -1,3 +1,5 @@
+import { z, ZodType } from "zod"; // Add new import
+
 // __________________________________  BOOKING TYPES   _____________________________________________
 
 export type bookingVenueType = {
@@ -147,3 +149,128 @@ export enum profileQueryParams {
   bookings = "_bookings",
   venues = "_venues",
 }
+
+// _______________________________________________________________________________________________
+// __________________________________  PROFILE TYPES   _____________________________________________
+
+import { FieldError, UseFormRegister } from "react-hook-form";
+
+export type RegisterFormData = {
+  name: string;
+  email?: string;
+  password: string;
+  bio?: string;
+  bannerUrl?: string;
+  bannerAlt?: string;
+  avatarUrl?: string;
+  avatarAlt?: string;
+  venueManager?: boolean;
+};
+
+export type FormFieldProps = {
+  type: string;
+  placeholder?: string;
+  name: ValidRegisterNames;
+  register: UseFormRegister<RegisterFormData>;
+  error?: FieldError | undefined;
+  valueAsNumber?: boolean;
+  variant?: "primary" | "secondary" | "tertiary";
+  size?: "sm" | "md" | "lg";
+  className?: string;
+};
+
+export type ValidRegisterNames =
+  | "email"
+  | "name"
+  | "password"
+  | "bio"
+  | "bannerUrl"
+  | "bannerAlt"
+  | "avatarUrl"
+  | "avatarAlt"
+  | "venueManager";
+
+const exeptedNameCharacters = ["_"];
+
+export const RegisterSchema: ZodType<RegisterFormData> = z
+  .object({
+    name: z
+      .string()
+      .min(3, "name-short")
+      .max(50, "name-long")
+      .refine(
+        (val) =>
+          val.split("").every((char) => {
+            return (
+              char.match(/[a-zA-Z0-9]/) || exeptedNameCharacters.includes(char)
+            );
+          }),
+        {
+          message: "name-invalid-char",
+        }
+      ),
+    email: z.string().email("email-invalid").includes("@stud.noroff.no", {
+      message: "email-not-noroff",
+    }),
+    password: z.string().min(8, "password-short"),
+
+    bannerUrl: z
+      .string()
+      .url("banner-url-invalid")
+      .optional()
+      .default("")
+      .or(z.literal("")),
+    bannerAlt: z
+      .string()
+      .max(120, { message: "banner-alt-long" })
+      .optional()
+      .default(""),
+    avatarUrl: z
+      .string()
+      .url("avatar-url-invalid")
+      .optional()
+      .or(z.literal("")),
+
+    avatarAlt: z
+      .string()
+      .max(120, { message: "avatar-alt-long" })
+      .optional()
+      .default(""),
+
+    bio: z
+      .string()
+      .max(120, { message: "bio-long" })
+      .optional()
+      .or(z.literal("")),
+
+    venueManager: z.boolean(),
+  })
+  .refine(
+    (data) => {
+      return data.bannerAlt.length > 0 ? data.bannerUrl.length > 0 : true;
+    },
+    {
+      message: "banner-required",
+      path: ["bannerAlt"],
+    }
+  )
+  .refine(
+    (data) => {
+      return data.avatarAlt.length > 0 ? data.avatarUrl!.length > 0 : true;
+    },
+    {
+      message: "avatar-required",
+      path: ["avatarAlt"],
+    }
+  );
+
+export type LoginFormData = {
+  name: string;
+};
+
+export type ValidLoginNames = "name" | "password";
+
+export const LoginSchema: ZodType<RegisterFormData> = z.object({
+  name: z.string().min(3, "name-short"),
+  password: z.string().min(8, "password-short"),
+});

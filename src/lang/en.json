@@ -5,6 +5,35 @@
     "Bookings": "Bookings",
     "Contact": "Contact",
     "Login": "Sign In",
-    "Register": "Sign Up"
+    "Register": "Sign Up",
+    "Submit": "Submit",
+    "Name": "Name",
+    "Email": "Email",
+    "Password": "Password",
+    "Banner Url": "Banner Url",
+    "Bio": "Bio",
+    "Banner Alt": "Banner Alt",
+    "Avatar Url": "Avatar Url",
+    "Avatar Alt": "Avatar Alt",
+
+    "name-long": "Name is too long",
+    "name-short": "Name is too short",
+    "name-invalid-char": "Name can only contain letters, numbers and underscores",
+
+    "email-invalid": "Email is invalid",
+    "email-not-noroff": "Email must be a Noroff email",
+
+    "password-short": " Password is too short",
+
+    "banner-url-invalid": "Banner URL is invalid",
+    "banner-alt-long": "Banner Alt is too long",
+
+    "avatar-url-invalid": "Avatar URL is invalid",
+    "avatar-alt-long": "Avatar Alt is too long",
+
+    "bio-long": "Bio is too long",
+
+    "banner-required": "Banner URL is required if alt text is provided",
+    "avatar-required": "Avatar URL is required if alt text is provided"
   }
 }

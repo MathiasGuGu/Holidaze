@@ -8,3 +8,4 @@ export enum ApiAuthEndpoints {
   venues = "/venues",
   profiles = "/profiles",
 }
+

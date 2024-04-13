@@ -5,6 +5,35 @@
     "Bookings": "Bestillinger",
     "Contact": "Kontakt",
     "Login": "Logg inn",
-    "Register": "Registrer"
+    "Register": "Registrer",
+    "Submit": "Send inn",
+    "Name": "Navn",
+    "Email": "Epost",
+    "Password": "Passord",
+    "Banner Url": "Bakgrunn Url",
+    "Bio": "Bio",
+    "Banner Alt": "Bakgrunn Alt",
+    "Avatar Url": "Profilbilde Url",
+    "Avatar Alt": "Profilbilde Alt",
+
+    "name-long": "Navnet er for langt",
+    "name-short": "Navnet er for kort",
+    "name-invalid-char": "Navnet inneholder kan bare inneholde bokstaver, tall og understrek",
+
+    "email-invalid": "Epost er ugyldig",
+    "email-not-noroff": "Epost må være en Noroff epost",
+
+    "password-short": "Passordet er for kort",
+
+    "banner-url-invalid": "Bakgrunns bildet Url er ugyldig",
+    "banner-alt-long": "Bakgrunns bildet Alt er for langt",
+
+    "avatar-url-invalid": "Profilbilde Url er ugyldig",
+    "avatar-alt-long": " Profilbilde Alt er for langt",
+
+    "bio-long": "Bio er for langt",
+
+    "banner-required": "Bakgrunn URL er påkrevd hvis alt tekst er gitt",
+    "avatar-required": "Profilbilde URL er påkrevd hvis alt tekst er gitt"
   }
 }

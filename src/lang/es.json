@@ -5,6 +5,36 @@
     "Bookings": "Reservas",
     "Contact": "Contacto",
     "Login": "Iniciar sesión",
-    "Register": "Registrarse"
+    "Register": "Registrarse",
+    "Submit": "Enviar",
+
+    "Name": "Nombre",
+    "Email": "Email",
+    "Password": "Contraseña",
+    "Banner Url": "Fondo Url",
+    "Bio": "Biografía",
+    "Banner Alt": "Fondo Alt",
+    "Avatar Url": "Foto de perfil Url",
+    "Avatar Alt": "Foto de perfil Alt",
+
+    "name-long": "Nombre es demasiado largo",
+    "name-short": "Nombre es demasiado corto",
+    "name-invalid-char": "Nombre contiene caracteres inválidos",
+
+    "email-invalid": "Email es inválido",
+    "email-not-noroff": "Email no es de Noroff",
+
+    "password-short": "Contraseña es demasiado corto",
+
+    "banner-url-invalid": "Url de fondo es inválido",
+    "banner-alt-long": "Alt de fondo es demasiado largo",
+
+    "avatar-url-invalid": "Foto de perfil Url es inválido",
+    "avatar-alt-long": "Foto de perfil Alt es demasiado largo",
+
+    "bio-long": "Biografía es demasiado larga",
+
+    "banner-required": "Banner URL is required if alt text is provided",
+    "avatar-required": "Avatar URL is required if alt text is provided"
   }
 }
