@@ -14,7 +14,8 @@ jobs:
         with:
           project: ./site
           browser: chrome
-          start: npm run dev
+          build: npm run build
+          start: npm run start
           wait-on: "http://localhost:5173"
         env:
           CI: ""
