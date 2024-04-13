@@ -1,21 +1,22 @@
-name: E2E on Chrome
-
+name: basic
 on: [push]
-
 jobs:
-  install:
-    runs-on: ubuntu-latest
+  cypress-run:
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
       - name: Cypress run
-        uses: cypress-io/github-action@v3
+        uses: cypress-io/github-action@v2
+        # execute Cypress using a custom test command
         with:
-          project: ./site
-          browser: chrome
-          build: yarn build
-          start: yarn start
-          wait-on: "http://localhost:5173"
+          # verifies the number of passing tests
+          # and passes a variable to Cypress
+          # to be read using Cypress.env("lastName")
+          command: npm run start
+        # when setting "plain" environment variables
+        # if we want to pass Cypress to read them
+        # we need to prefix them with "CYPRESS_"
+        # https://on.cypress.io/environment-variables
         env:
           CI: ""
