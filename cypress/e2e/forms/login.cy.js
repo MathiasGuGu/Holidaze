@@ -30,7 +30,7 @@ describe("Login Form", () => {
   });
 
   it("should not get error whith valid name", () => {
-    cy.get("@email").type("Test");
+    cy.get("@email").type("magugu_test_user@stud.noroff.no");
     cy.get("@submit").click();
     cy.get("#email-error").should("not.exist");
   });
