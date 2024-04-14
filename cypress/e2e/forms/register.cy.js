@@ -158,6 +158,9 @@ describe("Register Form Errors", () => {
     cy.get("form").should("be.visible");
   });
 
+  // TODO: Change to check for page change and not local storage
+  // TODO: These tests are gonna fail
+
   it("should submit when all fields are correct", () => {
     cy.get("@name").type("Test");
     cy.get("@email").type("mathias@stud.noroff.no");

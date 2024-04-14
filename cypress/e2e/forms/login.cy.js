@@ -60,8 +60,7 @@ describe("Login Form", () => {
 
     cy.get("@submit").click();
     cy.get("form").should(() => {
-      expect(localStorage.getItem("login")).to.not.be.null;
-      expect(localStorage.getItem("login")).to.eq("true");
+      expect(localStorage.getItem("accessToken")).to.not.be.null;
     });
 
     cy.clearLocalStorage();

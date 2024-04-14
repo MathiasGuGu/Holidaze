@@ -156,7 +156,7 @@ export enum profileQueryParams {
 import { FieldError, UseFormRegister } from "react-hook-form";
 
 export type RegisterFormData = {
-  name: string;
+  name?: string;
   email?: string;
   password: string;
   bio?: string;
@@ -271,6 +271,8 @@ export type LoginFormData = {
 export type ValidLoginNames = "name" | "password";
 
 export const LoginSchema: ZodType<RegisterFormData> = z.object({
-  name: z.string().min(3, "name-short"),
+  email: z.string().email("email-invalid").includes("@stud.noroff.no", {
+    message: "email-not-noroff",
+  }),
   password: z.string().min(8, "password-short"),
 });
