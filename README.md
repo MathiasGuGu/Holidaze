@@ -1,4 +1,4 @@
-[![Automated E2E Testing](https://github.com/mathiasgugu/Holidaze/actions/workflows/cypress.yml/badge.svg)](https://github.com/sindrebenjamin/semester-project-2/actions/workflows/cypress.yml)
+[![Automated E2E Testing](https://github.com/mathiasgugu/Holidaze/actions/workflows/cypress.yml/badge.svg)](https://github.com/mathiasgugu/Holidaze/actions/workflows/cypress.yml)
 
 # Holidaze - Book your dream venue tonight
 
