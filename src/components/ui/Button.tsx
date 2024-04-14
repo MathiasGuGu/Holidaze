@@ -1,6 +1,5 @@
 import { cva } from "class-variance-authority";
 import { cn } from "../../lib/utils";
-import { useTranslation } from "react-i18next";
 
 type buttonProps = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -23,8 +22,6 @@ export default function Button({
     />
   );
 }
-
-console.log("hello");
 
 const buttonVariants = cva("rounded w-fit duration-300", {
   variants: {

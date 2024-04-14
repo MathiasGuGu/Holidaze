@@ -176,6 +176,7 @@ const Navbar = () => {
         <ul className="absolute w-auto h-full flex items-center justify-center gap-8 left-1/2 -translate-x-1/2">
           {navLinks.map((link, index) => (
             <motion.div
+              key={index}
               initial={{ opacity: 0, y: -15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 * index, duration: 0.6 }}

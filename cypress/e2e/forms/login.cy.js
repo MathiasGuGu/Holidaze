@@ -2,7 +2,7 @@ describe("Login Form", () => {
   beforeEach(() => {
     cy.visit("http://localhost:5173/sign-in");
 
-    cy.get("#name-input").as("name");
+    cy.get("#email-input").as("email");
     cy.get("#password-input").as("password");
     cy.get("button[type=submit]").as("submit");
   });
@@ -12,27 +12,27 @@ describe("Login Form", () => {
   });
 
   it("should display the relevant fields", () => {
-    cy.get("@name").should("be.visible");
+    cy.get("@email").should("be.visible");
     cy.get("@password").should("be.visible");
   });
 
   // EMAIL
 
   it("should get error whith invalid name", () => {
-    cy.get("@name").type("t");
+    cy.get("@email").type("t");
     cy.get("@submit").click();
-    cy.get("#name-error").should("be.visible");
+    cy.get("#email-error").should("be.visible");
   });
 
   it("should get error whith no name", () => {
     cy.get("@submit").click();
-    cy.get("#name-error").should("be.visible");
+    cy.get("#email-error").should("be.visible");
   });
 
   it("should not get error whith valid name", () => {
-    cy.get("@name").type("Test");
+    cy.get("@email").type("magugu_test_user@stud.noroff.no");
     cy.get("@submit").click();
-    cy.get("#name-error").should("not.exist");
+    cy.get("#email-error").should("not.exist");
   });
 
   // PASSWORD
@@ -55,20 +55,19 @@ describe("Login Form", () => {
   });
 
   it("should submit when all fields are correct", () => {
-    cy.get("@name").type("Test");
-    cy.get("@password").type("Asdasdasd");
+    cy.get("@email").type("magugu_test_user@stud.noroff.no");
+    cy.get("@password").type("magugu_test_user");
 
     cy.get("@submit").click();
     cy.get("form").should(() => {
-      expect(localStorage.getItem("login")).to.not.be.null;
-      expect(localStorage.getItem("login")).to.eq("true");
+      expect(localStorage.getItem("accessToken")).to.not.be.null;
     });
 
     cy.clearLocalStorage();
   });
 
   it("should not submit when something is missing", () => {
-    cy.get("@name").type("Test");
+    cy.get("@email").type("magugu_test_user@stud.noroff.no");
     cy.get("@submit").click();
     cy.get("form").should(() => {
       expect(localStorage.getItem("success")).to.not.exist;
