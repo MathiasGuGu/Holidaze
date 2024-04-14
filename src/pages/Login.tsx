@@ -2,9 +2,11 @@ import { set, useForm } from "react-hook-form";
 import Button from "../components/ui/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import InputField from "../components/ui/InputField";
-import { LoginFormData, LoginSchema, RegisterFormData } from "../lib/types";
+import { LoginSchema, RegisterFormData } from "../lib/types";
 import { ApiAuthEndpoints, BASE_URL } from "../lib/api";
 import { useState } from "react";
+import { Loader2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
   // TODO: Add form validation
@@ -18,12 +20,13 @@ const Login = () => {
     resolver: zodResolver(LoginSchema),
   });
 
+  let { t } = useTranslation();
+
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
   const asd = async (e: any) => {
     localStorage.setItem("login", "true");
-    console.log(e);
 
     setLoading(true);
 
@@ -37,10 +40,10 @@ const Login = () => {
 
     let data = await res.json();
 
-    if (data.error) {
+    if (data.errors) {
       setError("name", {
         type: "manual",
-        message: data.message,
+        message: data.errors.status,
       });
       setIsError(true);
       setLoading(false);
@@ -76,9 +79,16 @@ const Login = () => {
         ></InputField>
 
         <Button type="submit" variant="primary" size="md">
-          Submit
+          {loading ? (
+            <Loader2 className="animate-spin" strokeWidth={1.5} size={22} />
+          ) : (
+            t("Submit")
+          )}
         </Button>
       </form>
+      {isError && (
+        <span className="text-danger">{t("Invalid credentials")}</span>
+      )}
     </div>
   );
 };
