@@ -49,8 +49,8 @@ export enum bookingQueryParams {
 // __________________________________  VENUE TYPES   _____________________________________________
 
 type venueMediaType = {
-  id: "string";
-  alt: "string";
+  url: string;
+  alt: string;
 };
 
 type venueMetaType = {

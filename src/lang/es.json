@@ -6,35 +6,42 @@
     "Contact": "Contacto",
     "Login": "Iniciar sesión",
     "Register": "Registrarse",
+    "Sign out": "Cerrar sesión",
+
+    "My account": "Mi cuenta",
+
     "Submit": "Enviar",
 
+    "Search": "Buscar",
+    "Profile": "Perfil",
+
     "Name": "Nombre",
-    "Email": "Email",
+    "Email": "Correo electrónico",
     "Password": "Contraseña",
-    "Banner Url": "Fondo Url",
+    "Banner Url": "URL de la imagen de fondo",
     "Bio": "Biografía",
-    "Banner Alt": "Fondo Alt",
-    "Avatar Url": "Foto de perfil Url",
-    "Avatar Alt": "Foto de perfil Alt",
+    "Banner Alt": "Texto alternativo de la imagen de fondo",
+    "Avatar Url": "URL de la foto de perfil",
+    "Avatar Alt": "Texto alternativo de la foto de perfil",
 
-    "name-long": "Nombre es demasiado largo",
-    "name-short": "Nombre es demasiado corto",
-    "name-invalid-char": "Nombre contiene caracteres inválidos",
+    "name-long": "El nombre es demasiado largo",
+    "name-short": "El nombre es demasiado corto",
+    "name-invalid-char": "El nombre contiene caracteres no válidos",
 
-    "email-invalid": "Email es inválido",
-    "email-not-noroff": "Email no es de Noroff",
+    "email-invalid": "El correo electrónico es inválido",
+    "email-not-noroff": "El correo electrónico no pertenece a Noroff",
 
-    "password-short": "Contraseña es demasiado corto",
+    "password-short": "La contraseña es demasiado corta",
 
-    "banner-url-invalid": "Url de fondo es inválido",
-    "banner-alt-long": "Alt de fondo es demasiado largo",
+    "banner-url-invalid": "La URL de la imagen de fondo es inválida",
+    "banner-alt-long": "El texto alternativo de la imagen de fondo es demasiado largo",
 
-    "avatar-url-invalid": "Foto de perfil Url es inválido",
-    "avatar-alt-long": "Foto de perfil Alt es demasiado largo",
+    "avatar-url-invalid": "La URL de la foto de perfil es inválida",
+    "avatar-alt-long": "El texto alternativo de la foto de perfil es demasiado largo",
 
-    "bio-long": "Biografía es demasiado larga",
+    "bio-long": "La biografía es demasiado larga",
 
-    "banner-required": "Banner URL is required if alt text is provided",
-    "avatar-required": "Avatar URL is required if alt text is provided"
+    "banner-required": "Se requiere la URL de la imagen de fondo si se proporciona texto alternativo",
+    "avatar-required": "Se requiere la URL de la foto de perfil si se proporciona texto alternativo"
   }
 }

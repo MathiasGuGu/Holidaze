@@ -9,7 +9,7 @@ describe("Register Form Errors", () => {
     cy.get("#bannerAlt-input").as("bannerAlt");
     cy.get("#avatarUrl-input").as("avatarUrl");
     cy.get("#avatarAlt-input").as("avatarAlt");
-    cy.get("button[type=submit]").as("submit");
+    cy.get("#submit-register-button").as("submit");
   });
 
   it("should display the login form", () => {

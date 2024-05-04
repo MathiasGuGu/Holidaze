@@ -11,6 +11,7 @@ import PageNotFound from "./routeElements/PageNotFound.tsx";
 import Layout from "./routeElements/Layout.tsx";
 import Login from "./pages/Login.tsx";
 import Register from "./pages/Register.tsx";
+import Discover from "./pages/Discover.tsx";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/sign-up",
         element: <Register />,
+      },
+      {
+        path: "/discover",
+        element: <Discover />,
       },
     ],
   },

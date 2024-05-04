@@ -1,42 +1,19 @@
 import "./App.css";
+// import HeroVenueShowcase from "./components/HeroVenueShowcase";
 import Button from "./components/ui/Button";
 
 function App() {
   return (
-    <div className="w-screen h-auto  flex flex-col gap-8 p-12 font-para">
-      <div className="flex gap-4 items-center">
-        <Button variant="primary" size="md">
-          Primary
-        </Button>
-        <Button variant="secondary" size="md">
-          Secondary
-        </Button>
-        <Button variant="tertiary" size="md">
-          Tertiary
-        </Button>
+    <div className="w-screen h-auto flex flex-col relative items-center justify-center">
+      <div className="w-screen h-96  flex flex-col items-center justify-center gap-8">
+        <p>Holidaze</p>
+        <h1 className="text-6xl max-w-4xl text-balance text-center font-title text-text">
+          Find a Venue for your next event
+        </h1>
+        <Button>Explore</Button>
       </div>
-      <div className="flex gap-4 items-center">
-        <Button variant="primary" size="lg">
-          Primary
-        </Button>
-        <Button variant="secondary" size="lg">
-          Secondary
-        </Button>
-        <Button variant="tertiary" size="lg">
-          Tertiary
-        </Button>
-      </div>
-      <div className="flex gap-4 items-center">
-        <Button variant="primary" size="sm">
-          Primary
-        </Button>
-        <Button variant="secondary" size="sm">
-          Secondary
-        </Button>
-        <Button variant="tertiary" size="sm">
-          Tertiary
-        </Button>
-      </div>
+      <div className="w-auto h-auto mt-12">{/* <HeroVenueShowcase /> */}</div>
+      <div className="h-screen w-screen"></div>
     </div>
   );
 }

@@ -6,7 +6,14 @@
     "Contact": "Contact",
     "Login": "Sign In",
     "Register": "Sign Up",
+    "Sign out": "Sign out",
+
+    "My account": "My account",
+
     "Submit": "Submit",
+
+    "Search": "Search",
+
     "Name": "Name",
     "Email": "Email",
     "Password": "Password",

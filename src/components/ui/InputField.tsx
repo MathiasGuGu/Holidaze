@@ -22,41 +22,43 @@ const InputField: React.FC<FormFieldProps> = ({
   const { t, i18n } = useTranslation();
 
   return (
-    <div className="flex flex-col gap-2 isolate">
-      <div className="flex relative w-auto">
-        <input
-          id={name + "-input"}
-          type={useType}
-          placeholder={t(`${placeholder}`)}
-          {...register(name)}
-          className={cn(buttonVariants({ variant, size }), className)}
-        />
-        {startType === "password" && useType === "password" ? (
-          <Button
-            onClick={() => setUseType("text")}
-            className="absolute right-0 top-0"
-            type="button"
-            variant="tertiary"
-            size="sm"
-          >
-            <Eye size={24} strokeWidth={1.5} className="cursor-pointer" />
-          </Button>
-        ) : startType === "password" && useType === "text" ? (
-          <Button
-            onClick={() => setUseType("password")}
-            className="absolute right-0 top-0"
-            type="button"
-            variant="tertiary"
-            size="sm"
-          >
-            <EyeOff size={24} strokeWidth={1.5} className="cursor-pointer" />
-          </Button>
-        ) : (
-          ""
-        )}
-      </div>
+    <div className="flex flex-col gap-2">
+      <div className="flex flex-col w-fit  gap-2 isolate">
+        <div className="flex relative w-fit ">
+          <input
+            id={name + "-input"}
+            type={useType}
+            placeholder={t(`${placeholder}`)}
+            {...register(name)}
+            className={cn(buttonVariants({ variant, size }), className)}
+          />
+          {startType === "password" && useType === "password" ? (
+            <Button
+              onClick={() => setUseType("text")}
+              className="absolute right-0 top-0"
+              type="button"
+              variant="tertiary"
+              size="sm"
+            >
+              <Eye size={24} strokeWidth={1.5} className="cursor-pointer" />
+            </Button>
+          ) : startType === "password" && useType === "text" ? (
+            <Button
+              onClick={() => setUseType("password")}
+              className="absolute right-0 top-0"
+              type="button"
+              variant="tertiary"
+              size="sm"
+            >
+              <EyeOff size={24} strokeWidth={1.5} className="cursor-pointer" />
+            </Button>
+          ) : (
+            ""
+          )}
+        </div>
+      </div>{" "}
       {error && (
-        <span id={name + "-error"} className=" text-danger">
+        <span id={name + "-error"} className=" text-danger text-sm">
           {t(`${error.message}`)}
         </span>
       )}
@@ -64,7 +66,7 @@ const InputField: React.FC<FormFieldProps> = ({
   );
 };
 
-const buttonVariants = cva("rounded w-fit duration-300", {
+const buttonVariants = cva("rounded duration-300 w-full ", {
   variants: {
     variant: {
       primary: "bg-text text-background",

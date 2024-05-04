@@ -4,7 +4,7 @@ describe("Login Form", () => {
 
     cy.get("#email-input").as("email");
     cy.get("#password-input").as("password");
-    cy.get("button[type=submit]").as("submit");
+    cy.get("#submit-login-button").as("submit");
   });
 
   it("should display the login form", () => {
@@ -60,7 +60,10 @@ describe("Login Form", () => {
 
     cy.get("@submit").click();
     cy.get("form").should(() => {
-      expect(localStorage.getItem("accessToken")).to.not.be.null;
+      expect(localStorage.getItem("auth-storage")).to.not.be.null;
+      let authStorage = JSON.parse(localStorage.getItem("auth-storage"));
+      expect(authStorage.state.isLoggedIn).to.be.true;
+      expect(authStorage.state.user.name).to.eq("magugu_test_user");
     });
 
     cy.clearLocalStorage();
@@ -72,5 +75,18 @@ describe("Login Form", () => {
     cy.get("form").should(() => {
       expect(localStorage.getItem("success")).to.not.exist;
     });
+  });
+
+  it("should display new navbar info when logged in", () => {
+    cy.viewport("macbook-15");
+    cy.get("@email").type("magugu_test_user@stud.noroff.no");
+    cy.get("@password").type("magugu_test_user");
+    cy.get("@submit").click();
+
+    cy.wait(200);
+    cy.get("#user-info-button").should("be.visible");
+
+    cy.visit("http://localhost:5173/");
+    cy.get("#user-info-button").should("be.visible");
   });
 });

@@ -5,7 +5,6 @@ import InputField from "../components/ui/InputField";
 import { RegisterFormData, RegisterSchema } from "../lib/types";
 import SelectInput from "../components/ui/SelectInput";
 import { useTranslation } from "react-i18next";
-import { useFetch } from "../hooks/useFetch";
 import { ApiAuthEndpoints, BASE_URL } from "../lib/api";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
@@ -28,6 +27,8 @@ const Register = () => {
 
   const FormSubmitAction = async (e: any) => {
     setLoading(true);
+
+    // fetch the data
     let res = await fetch(`${BASE_URL}${ApiAuthEndpoints.register}`, {
       method: "POST",
       headers: {
@@ -38,8 +39,10 @@ const Register = () => {
 
     let data = await res.json();
 
+    // stop the loader
     setLoading(false);
 
+    // if the data has an error, set the error message
     if (data.error) {
       setIsError(true);
       setError("name", {
@@ -49,7 +52,10 @@ const Register = () => {
       return;
     }
 
+    // if the data is successful, set success to true, can remove, just for testing
     localStorage.setItem("success", "true");
+
+    // If everything worked, set errors to false just in case
     setIsError(false);
   };
 
@@ -139,7 +145,12 @@ const Register = () => {
             {isError && errors.name?.message}
           </span>
         )}
-        <Button type="submit" variant="primary" size="md">
+        <Button
+          id="submit-register-button"
+          type="submit"
+          variant="primary"
+          size="md"
+        >
           {loading ? (
             <Loader2 className="animate-spin" strokeWidth={1.5} size={22} />
           ) : (

@@ -1,41 +1,51 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+module.exports = {
+  darkMode: ["class"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
+  prefix: "",
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
+
+    fontFamily: {
+      title: ["Sora"],
+      para: ["Figtree"],
+    },
+
     extend: {
-      colors: {
-        text: {
-          DEFAULT: "#10172A",
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
-        background: {
-          DEFAULT: "hsl(240, 20%, 95%)",
-        },
-        primary: {
-          dark: "#0A247A",
-          DEFAULT: "#3784FF",
-          light: "#D7ECFF",
-        },
-        danger: {
-          dark: "#7A0824",
-          DEFAULT: "#FF3F2D",
-          light: "#FFC6AB",
-        },
-        success: {
-          dark: "#085A41",
-          DEFAULT: "#2DBC58",
-          light: "#ACF8AD",
-        },
-        warning: {
-          light: "#FDFAA3",
-          DEFAULT: "#F2E71A",
-          dark: "#746C04",
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
-      fontFamily: {
-        para: ["Figtree", "sans-serif"],
-        title: ["Sora", "sans-serif"],
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      colors: {
+        background: "#f2f2f2",
+        "background-accent": "#FFFFFF",
+        text: "#10172A",
+        danger: "#FF3F2D",
+        warning: "#F2E71A",
+        success: "#2DBC58",
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
