@@ -3,7 +3,7 @@ import { cn } from "../../lib/utils";
 import { FormFieldProps } from "../../lib/types";
 import { Eye, EyeOff, EyeOffIcon } from "lucide-react";
 import { useState } from "react";
-import Button from "./Button";
+import HolidazeButton from "./HolidazeButton";
 import { useTranslation } from "react-i18next";
 
 const InputField: React.FC<FormFieldProps> = ({
@@ -33,7 +33,7 @@ const InputField: React.FC<FormFieldProps> = ({
             className={cn(buttonVariants({ variant, size }), className)}
           />
           {startType === "password" && useType === "password" ? (
-            <Button
+            <HolidazeButton
               onClick={() => setUseType("text")}
               className="absolute right-0 top-0"
               type="button"
@@ -41,9 +41,9 @@ const InputField: React.FC<FormFieldProps> = ({
               size="sm"
             >
               <Eye size={24} strokeWidth={1.5} className="cursor-pointer" />
-            </Button>
+            </HolidazeButton>
           ) : startType === "password" && useType === "text" ? (
-            <Button
+            <HolidazeButton
               onClick={() => setUseType("password")}
               className="absolute right-0 top-0"
               type="button"
@@ -51,7 +51,7 @@ const InputField: React.FC<FormFieldProps> = ({
               size="sm"
             >
               <EyeOff size={24} strokeWidth={1.5} className="cursor-pointer" />
-            </Button>
+            </HolidazeButton>
           ) : (
             ""
           )}

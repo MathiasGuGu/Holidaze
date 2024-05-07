@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "./ui/Button";
+import HolidazeButton from "./ui/HolidazeButton";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { navLinks } from "@/lib/linksData";
@@ -15,7 +15,7 @@ const MobileNavDropdown = () => {
   return (
     <>
       <div className="h-8 flex md:hidden">
-        <Button
+        <HolidazeButton
           onClick={() => {
             handleDropdown();
           }}
@@ -26,7 +26,7 @@ const MobileNavDropdown = () => {
           <span className="w-full h-[2px] bg-text rounded-full"></span>
           <span className="w-6 h-[2px] bg-text rounded-full"></span>
           <span className="w-7 h-[2px] bg-text rounded-full"></span>
-        </Button>
+        </HolidazeButton>
       </div>
       <AnimatePresence>
         {isOpen && (

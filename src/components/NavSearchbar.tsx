@@ -1,5 +1,5 @@
 import { Search } from "lucide-react";
-import Button from "./ui/Button";
+import HolidazeButton from "@/components/ui/HolidazeButton";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -81,14 +81,14 @@ const Searchbar = () => {
         placeholder={t("Search") + "..."}
         className="h-10 w-64 focus:outline-1 hidden lg:flex outline-text z-20 px-4 bg-background placeholder:text-sm rounded-full"
       />
-      <Button
+      <HolidazeButton
         variant="tertiary"
         type="submit"
         size="md"
         className="absolute right-2 top-0 h-full  px-2 z-30"
       >
         <Search size={22} strokeWidth={1.5} className="" />
-      </Button>
+      </HolidazeButton>
       <AnimatePresence>
         {isSearching && (
           <motion.div
@@ -123,9 +123,14 @@ const SearchButton = () => {
   //
   return (
     <Link to="/discover">
-      <Button variant="tertiary" type="submit" size="md" className="px-2">
+      <HolidazeButton
+        variant="tertiary"
+        type="submit"
+        size="md"
+        className="px-2"
+      >
         <Search size={25} strokeWidth={1.5} className="" />
-      </Button>
+      </HolidazeButton>
     </Link>
   );
 };

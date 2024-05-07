@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import Button from "../../components/ui/Button";
+import HolidazeButton from "@/components/ui/HolidazeButton";
 import { useAuthStore } from "../../stores/authStore";
 import { useStore } from "zustand";
 import UserButton from "../../components/UserButton";
@@ -110,7 +110,7 @@ const Navbar = () => {
         ) : (
           <>
             <motion.div className="w-auto h-auto hidden md:flex">
-              <Button
+              <HolidazeButton
                 variant="tertiary"
                 size="sm"
                 className="hover:bg-background"
@@ -118,10 +118,10 @@ const Navbar = () => {
                 <Link to="/sign-in" className="">
                   {t("Login")}
                 </Link>
-              </Button>
+              </HolidazeButton>
             </motion.div>
             <motion.div className="w-auto h-auto">
-              <Button
+              <HolidazeButton
                 variant="primary"
                 size="md"
                 className="px-3 md:px-8 text-sm md:text-base"
@@ -129,7 +129,7 @@ const Navbar = () => {
                 <Link to="/sign-up" className=" ">
                   {t("Register")}
                 </Link>
-              </Button>
+              </HolidazeButton>
             </motion.div>
           </>
         )}

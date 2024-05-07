@@ -1,7 +1,6 @@
 import "./App.css";
 // import HeroVenueShowcase from "./components/HeroVenueShowcase";
-import Button from "./components/ui/Button";
-
+import HolidazeButton from "./components/ui/HolidazeButton";
 function App() {
   return (
     <div className="w-screen h-auto flex flex-col relative items-center justify-center">
@@ -10,7 +9,7 @@ function App() {
         <h1 className="text-6xl max-w-4xl text-balance text-center font-title text-text">
           Find a Venue for your next event
         </h1>
-        <Button>Explore</Button>
+        <HolidazeButton>Explore</HolidazeButton>
       </div>
       <div className="w-auto h-auto mt-12">{/* <HeroVenueShowcase /> */}</div>
       <div className="h-screen w-screen"></div>
