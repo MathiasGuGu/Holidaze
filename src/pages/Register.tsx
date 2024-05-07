@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import Button from "../components/ui/Button";
+import HolidazeButton from "@/components/ui/HolidazeButton";
 import { zodResolver } from "@hookform/resolvers/zod";
 import InputField from "../components/ui/InputField";
 import { RegisterFormData, RegisterSchema } from "../lib/types";
@@ -145,7 +145,7 @@ const Register = () => {
             {isError && errors.name?.message}
           </span>
         )}
-        <Button
+        <HolidazeButton
           id="submit-register-button"
           type="submit"
           variant="primary"
@@ -156,7 +156,7 @@ const Register = () => {
           ) : (
             t("Submit")
           )}
-        </Button>
+        </HolidazeButton>
       </form>
     </div>
   );

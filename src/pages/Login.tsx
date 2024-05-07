@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import Button from "../components/ui/Button";
+import HolidazeButton from "@/components/ui/HolidazeButton";
 import { zodResolver } from "@hookform/resolvers/zod";
 import InputField from "../components/ui/InputField";
 import { LoginSchema, RegisterFormData } from "../lib/types";
@@ -89,7 +89,7 @@ const Login = () => {
           error={errors.password}
         ></InputField>
 
-        <Button
+        <HolidazeButton
           id="submit-login-button"
           type="submit"
           variant="primary"
@@ -100,7 +100,7 @@ const Login = () => {
           ) : (
             t("Submit")
           )}
-        </Button>
+        </HolidazeButton>
       </form>
       {isError && (
         <span className="text-danger">{t("Invalid credentials")}</span>
