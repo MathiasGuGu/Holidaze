@@ -41,6 +41,8 @@
     "bio-long": "Bio is too long",
 
     "banner-required": "Banner URL is required if alt text is provided",
-    "avatar-required": "Avatar URL is required if alt text is provided"
+    "avatar-required": "Avatar URL is required if alt text is provided",
+
+    "discover-search-title": "Discover Amazing new venues"
   }
 }

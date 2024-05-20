@@ -6,7 +6,7 @@ export const navLinks = [
   },
   {
     name: "Venues",
-    path: "/",
+    path: "/discover",
     onlyMobile: false,
     description: "Find the perfect venue for your event",
     children: [

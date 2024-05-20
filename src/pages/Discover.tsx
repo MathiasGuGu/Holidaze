@@ -4,9 +4,11 @@ import VenueDiscoveryCard from "@/components/VenueDiscoveryCard";
 import { useFetch } from "@/hooks/useFetch";
 import { BASE_URL } from "@/lib/api";
 import { venueType } from "@/lib/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import VenueDiscoverySearch from "@/components/VenueDiscoverySearch";
+import VenuePostsEmpty from "@/components/VenuePostsEmpty";
 
 const PostLoader = () => {
   return (
@@ -33,6 +35,7 @@ const DiscoverFeed = ({
   searchEmpty: boolean;
 }) => {
   const [page, setPage] = useState(1);
+  const [isPostsEmpty, setIsPostsEmpty] = useState(false);
 
   const {
     data: posts,
@@ -44,10 +47,17 @@ const DiscoverFeed = ({
         `${BASE_URL}/holidaze/venues/search?q=${searchParam}&page=${page}`
       );
 
+  useEffect(() => {
+    if (posts && posts.data.length === 0) {
+      setIsPostsEmpty(true);
+    } else {
+      setIsPostsEmpty(false);
+    }
+  }, [posts]);
+
   return (
     <div>
-      <div className="w-screen h-48 mb-12 bg-gradient-to-r from-orange-300 to-rose-300"></div>
-
+      <VenueDiscoverySearch page={page} searchParam={searchParam} />
       {
         // If there is an error, display an error message
         error && <div>There was an error fetching the posts</div>
@@ -69,6 +79,7 @@ const DiscoverFeed = ({
                 ))}
             </AnimatePresence>
           </CardList>
+          {isPostsEmpty && <VenuePostsEmpty searchParam={searchParam} />}
           <Pagination
             page={page}
             pageCount={posts?.meta.pageCount}
