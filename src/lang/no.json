@@ -41,6 +41,21 @@
     "bio-long": "Bio er for langt",
 
     "banner-required": "Bakgrunn URL er påkrevd hvis alt tekst er gitt",
-    "avatar-required": "Profilbilde URL er påkrevd hvis alt tekst er gitt"
+    "avatar-required": "Profilbilde URL er påkrevd hvis alt tekst er gitt",
+
+    "discover-search-title": "Finn fantastiske nye steder",
+
+    "Your Venues": "Dine steder",
+    "Manage your venues": "Administrer dine steder",
+
+    "Create a Venue": "Opprett et sted",
+    "Add your venue to our platform": "Legg til ditt sted på vår plattform",
+    "Manage your bookings": "Administrer dine bestillinger",
+    "My Bookings": "Mine bestillinger",
+    "View and manage your bookings": "Se og administrer dine bestillinger",
+    "Upcoming Bookings": "Kommende bestillinger",
+    "View and manage your upcoming bookings": "Se og administrer dine kommende bestillinger",
+    "See Venue Bookings": "Se stedets bestillinger",
+    "View and manage your venue bookings": "Se og administrer dine steders bestillinger"
   }
 }

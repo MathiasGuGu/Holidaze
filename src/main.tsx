@@ -12,6 +12,8 @@ import Layout from "./routeElements/Layout.tsx";
 import Login from "./pages/Login.tsx";
 import Register from "./pages/Register.tsx";
 import Discover from "./pages/Discover.tsx";
+import Venue from "./pages/Venue.tsx";
+import Profile from "./pages/Profile.tsx";
 
 const router = createBrowserRouter([
   {
@@ -32,8 +34,16 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
+        path: "/profile",
+        element: <Profile />,
+      },
+      {
         path: "/discover",
         element: <Discover />,
+      },
+      {
+        path: "/discover/:id",
+        element: <Venue />,
       },
     ],
   },

@@ -89,30 +89,6 @@ const Searchbar = () => {
       >
         <Search size={22} strokeWidth={1.5} className="" />
       </HolidazeButton>
-      <AnimatePresence>
-        {isSearching && (
-          <motion.div
-            initial={{ height: 16 }}
-            animate={{ height: 200 }}
-            exit={{ opacity: 0, height: 16 }}
-            transition={{ duration: 0.3 }}
-            className="absolute top-4 bg-white/80 w-full h-6 rounded-t-xl rounded-b-lg shadow px-3 pt-12 overflow-scroll"
-          >
-            {recentSearches.map((search: any, index: number) => {
-              return (
-                <Link
-                  onClick={() => setIsSearching(false)}
-                  to={`/discover?search=${search}`}
-                  key={index}
-                  className="block py-2 px-3 hover:bg-gray-100"
-                >
-                  {search}
-                </Link>
-              );
-            })}
-          </motion.div>
-        )}
-      </AnimatePresence>
     </form>
   );
 };

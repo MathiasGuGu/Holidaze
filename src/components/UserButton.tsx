@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useAuthStore } from "@/stores/authStore";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 const UserButton = ({ imageSrc }: { imageSrc: string }) => {
   const store: any = useStore(useAuthStore); // Get the store instance
   const { t } = useTranslation();
@@ -28,7 +29,9 @@ const UserButton = ({ imageSrc }: { imageSrc: string }) => {
         <DropdownMenuContent className="w-72 mr-5 ">
           <DropdownMenuLabel> {t("My account")}</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>{t("Profile")}</DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link to="/profile">{t("Profile")}</Link>
+          </DropdownMenuItem>
           <DropdownMenuItem>{t("Bookings")}</DropdownMenuItem>
           <DropdownMenuItem>{t("Venues")}</DropdownMenuItem>
           <DropdownMenuSeparator />

@@ -42,6 +42,21 @@
     "bio-long": "La biografía es demasiado larga",
 
     "banner-required": "Se requiere la URL de la imagen de fondo si se proporciona texto alternativo",
-    "avatar-required": "Se requiere la URL de la foto de perfil si se proporciona texto alternativo"
+    "avatar-required": "Se requiere la URL de la foto de perfil si se proporciona texto alternativo",
+
+    "discover-search-title": "Descubre increibles lugares nuevos",
+
+    "Your Venues": "Tus Lugares",
+    "Manage your venues": "Administra tus lugares",
+
+    "Create a Venue": "Crear un lugar",
+    "Add your venue to our platform": "Agrega tu lugar a nuestra plataforma",
+    "Manage your bookings": "Administra tus reservas",
+    "My Bookings": "Mis Reservas",
+    "View and manage your bookings": "Ver y administrar tus reservas",
+    "Upcoming Bookings": "Reservas Futuras",
+    "View and manage your upcoming bookings": "Ver y administrar tus reservas futuras",
+    "See Venue Bookings": "Ver Reservas del Lugar",
+    "View and manage your venue bookings": "Ver y administrar tus reservas de lugar"
   }
 }

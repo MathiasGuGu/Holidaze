@@ -4,9 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { navLinks } from "@/lib/linksData";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const MobileNavDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
 
   const handleDropdown = () => {
     setIsOpen(!isOpen);
@@ -56,7 +58,7 @@ const MobileNavDropdown = () => {
                   })}
                 >
                   <Link to={link.path} className="font-semibold">
-                    {link.name}
+                    {t(link.name)}
                   </Link>
                   {link.children && (
                     <div className="flex flex-col border-l py-4 gap-4">
@@ -69,9 +71,9 @@ const MobileNavDropdown = () => {
                               ["ml-6 text-text flex flex-col gap-0"]: true,
                             })}
                           >
-                            <p className="text-md">{child.name}</p>
+                            <p className="text-md">{t(child.name)}</p>
                             <p className="text-sm text-zinc-600">
-                              {child.description}
+                              {t(child.description)}
                             </p>
                           </Link>
                         );

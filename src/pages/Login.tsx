@@ -30,19 +30,22 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const asd = async (e: any) => {
+  const submitFunction = async (e: any) => {
     localStorage.setItem("login", "true");
 
     try {
       setLoading(true);
 
-      let res = await fetch(BASE_URL + ApiAuthEndpoints.login, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(e),
-      });
+      let res = await fetch(
+        BASE_URL + ApiAuthEndpoints.login + "?_holidaze=true",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(e),
+        }
+      );
 
       let data = await res.json();
 
@@ -56,7 +59,27 @@ const Login = () => {
       }
 
       const { accessToken } = data.data;
-      login(data.data, accessToken);
+
+      let apiRes = await fetch(BASE_URL + "/auth/create-api-key", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      type apiKeyType = {
+        data: {
+          name: string;
+          status: string;
+          key: string;
+        };
+        meta: {};
+      };
+      let apiKey: apiKeyType = await apiRes.json();
+
+      console.log(apiKey);
+
+      login({ ...data.data, ...apiKey }, accessToken);
 
       //   localStorage.setItem("accessToken", accessToken);
       //   localStorage.setItem("data", JSON.stringify(data.data));
@@ -71,7 +94,10 @@ const Login = () => {
 
   return (
     <div className="w-screen h-auto py-12 flex items-center justify-center">
-      <form onSubmit={handleSubmit(asd)} className="flex flex-col gap-2">
+      <form
+        onSubmit={handleSubmit(submitFunction)}
+        className="flex flex-col gap-2"
+      >
         <InputField
           type="text"
           placeholder="Email"
