@@ -31,3 +31,32 @@ export const useFetch = <T>(url: string): FetchResponse<T> => {
 
   return { data, loading, error };
 };
+
+export const useAuthFetch = <T>(
+  url: string,
+  headers: any
+): FetchResponse<T> => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [ignore, setIgnore] = useState(false);
+
+  useEffect(() => {
+    if (ignore) return;
+    setLoading(true);
+    setData(null);
+    setError(null);
+    fetch(url, { method: "GET", headers: headers })
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+      })
+      .catch((err) => {
+        setError(err);
+        setLoading(false);
+      });
+  }, [url]);
+
+  setLoading(false);
+  return { data, loading, error };
+};

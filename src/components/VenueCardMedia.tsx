@@ -45,7 +45,7 @@ const VenueCardMedia = ({
                 <img
                   src={item.url}
                   alt={item.alt}
-                  className="w-full h-full object-cover rounded-xl"
+                  className="w-full h-full object-cover rounded"
                 />
               </CarouselItem>
             );

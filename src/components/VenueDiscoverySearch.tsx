@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom";
 const VenueDiscoverySearch = ({
   page,
   searchParam,
+  mutation,
 }: {
   page: number;
   searchParam: string;
+  mutation: any;
 }) => {
   const [search, setSearch] = useState<string>("");
   const [searchEmpty, setSearchEmpty] = useState<boolean>(true);
@@ -17,8 +19,7 @@ const VenueDiscoverySearch = ({
 
   const handleSearchSubmit = () => {
     // redirect user to discovery?search=searchparam
-
-    navigate("/discover" + "?search=" + search);
+    navigate(`/discover?search=${search}`);
   };
 
   return (

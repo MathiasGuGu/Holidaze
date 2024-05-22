@@ -14,6 +14,8 @@ import Register from "./pages/Register.tsx";
 import Discover from "./pages/Discover.tsx";
 import Venue from "./pages/Venue.tsx";
 import Profile from "./pages/Profile.tsx";
+import MyBookings from "./pages/MyBookings.tsx";
+import CreateVenue from "./pages/CreateVenue.tsx";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +38,14 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/venues/create",
+        element: <CreateVenue />,
+      },
+      {
+        path: "/profile/bookings",
+        element: <MyBookings />,
       },
       {
         path: "/discover",

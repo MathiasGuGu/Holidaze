@@ -1,32 +1,12 @@
 import VenuBookingCalendar from "@/components/VenuBookingCalendar";
 import HolidazeButton from "@/components/ui/HolidazeButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { useFetch } from "@/hooks/useFetch";
 import { BASE_URL } from "@/lib/api";
 import { venueMediaType, venueType } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/stores/authStore";
-import { PersonIcon } from "@radix-ui/react-icons";
-import {
-  Car,
-  Coins,
-  Dog,
-  Globe,
-  MailIcon,
-  PersonStanding,
-  Soup,
-  User,
-  Wifi,
-} from "lucide-react";
-import { useState } from "react";
+import { Car, Coins, Dog, Globe, Soup, User, Wifi } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { useStore } from "zustand";
 

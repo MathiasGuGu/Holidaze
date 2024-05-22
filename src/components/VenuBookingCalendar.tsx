@@ -1,19 +1,10 @@
 import HolidazeButton from "./ui/HolidazeButton";
 import { Calendar } from "./ui/calendar";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "./ui/dialog";
-import { addDays, set } from "date-fns";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./ui/dialog";
+import { addDays } from "date-fns";
 import { DateRange } from "react-day-picker";
 import { useEffect, useState } from "react";
 import { BASE_URL } from "@/lib/api";
-import { useStore } from "zustand";
-import { useAuthStore } from "@/stores/authStore";
 import { Loader2 } from "lucide-react";
 
 const VenuBookingCalendar = ({
@@ -78,8 +69,6 @@ const VenuBookingCalendar = ({
       return;
     }
 
-    console.log("Booking submitted!");
-
     try {
       setBookingSuccess(BookingStatus.Pending);
       let booking = await fetch(BASE_URL + "/holidaze/bookings", {
@@ -96,11 +85,13 @@ const VenuBookingCalendar = ({
           venueId: venueId,
         }),
       });
-      console.log(booking);
-      console.log("booking submitted!");
-      setBookingSuccess(BookingStatus.Confirmed);
+
+      if (booking.ok) {
+        setBookingSuccess(BookingStatus.Confirmed);
+      } else {
+        setBookingSuccess(BookingStatus.Failed);
+      }
     } catch (error) {
-      console.log(error);
       setBookingSuccess(BookingStatus.Failed);
     }
   };
@@ -123,7 +114,7 @@ const VenuBookingCalendar = ({
           Book this venue
         </HolidazeButton>
       </DialogTrigger>
-      <DialogContent className="w-screen h-[80vh] ">
+      <DialogContent className="w-screen max-w-lg flex flex-col items-center justify-center pb-8 h-[80vh] ">
         <DialogTitle className="text-lg">{name}</DialogTitle>
         <div className="w-full h-full flex flex-col relative  text-zinc-500 text-sm ">
           <Calendar

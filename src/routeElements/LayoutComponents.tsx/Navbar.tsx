@@ -8,10 +8,20 @@ import UserButton from "../../components/UserButton";
 import LanguageSelector from "@/components/LanguageSelector";
 import MobileNavDropdown from "@/components/MobileNavDropdown";
 import NavSearchbar from "@/components/NavSearchbar";
-import { navLinks } from "@/lib/linksData";
+import { bookingsLinks, navLinks, venuesLinks } from "@/lib/linksData";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+import { t } from "i18next";
 
 const NavbarLink = ({ link, index }: any) => {
   const [isOpen, setIsOpen] = useState<Boolean>(false);
@@ -95,11 +105,53 @@ const Navbar = () => {
       <div className="flex gap-2 items-center">
         <MobileNavDropdown />
         <p className="font-title text-text text-xl md:text-2xl">Holidaze</p>
-        <div className="px-6 flex gap-4 text-text  items-center justify-center hidden md:flex">
-          {navLinks.map((link, index) => (
+        <NavigationMenu className=" ml-4 hidden lg:flex">
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <Link to="/">
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  {t(`Home`)}
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger> {t(`Bookings`)}</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className=" w-[400px] gap-3 p-4 md:w-[500px] flex flex-col lg:w-[400px] ">
+                  {bookingsLinks.children?.map((component) => (
+                    <ListItem
+                      key={component.name}
+                      title={component.name}
+                      href={component.path}
+                    >
+                      {component.description}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>{t(`Venues`)}</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className=" w-[400px] gap-3 p-4 md:w-[500px] flex flex-col lg:w-[400px] ">
+                  {venuesLinks.children?.map((component) => (
+                    <ListItem
+                      key={component.name}
+                      title={component.name}
+                      href={component.path}
+                    >
+                      {component.description}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+
+        {/* {navLinks.map((link, index) => (
             <NavbarLink link={link} index={index} key={index} />
-          ))}
-        </div>
+          ))} */}
       </div>
 
       <div className="flex items-center gap-1 relative  ">
@@ -137,5 +189,34 @@ const Navbar = () => {
     </nav>
   );
 };
+
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a">
+>(({ className, title, children, href, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <Link
+          // @ts-ignore
+          to={href}
+          className={cn(
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            className
+          )}
+          {...props}
+        >
+          <div className="text-sm font-medium leading-none font-title">
+            {t(`${title}`)}
+          </div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground text-zinc-500">
+            {t(`${children}`)}
+          </p>
+        </Link>
+      </NavigationMenuLink>
+    </li>
+  );
+});
+ListItem.displayName = "ListItem";
 
 export default Navbar;
