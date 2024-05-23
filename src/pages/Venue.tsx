@@ -6,7 +6,16 @@ import { BASE_URL } from "@/lib/api";
 import { venueMediaType, venueType } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/stores/authStore";
-import { Car, Coins, Dog, Globe, Soup, User, Wifi } from "lucide-react";
+import {
+  ArrowRight,
+  Car,
+  Coins,
+  Dog,
+  Globe,
+  Soup,
+  User,
+  Wifi,
+} from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { useStore } from "zustand";
 
@@ -25,15 +34,15 @@ const VenueLoading = () => {
 
 const VenueMedia = ({ media }: { media: venueMediaType[] }) => {
   return (
-    <section className="w-screen h-auto min-h-[500px]  flex items-center justify-center gap-3 pt-6 pb-10 px-36">
-      <div className="w-[65%] h-[500px] rounded-lg  relative">
+    <section className="w-screen h-auto min-h-[500px]  flex flex-col md:flex-row items-center justify-center gap-3 pt-6 pb-10 px-2 md:px-36">
+      <div className="w-full md:w-[65%] h-[500px] rounded-lg  relative">
         <img
           src={media[0].url}
           alt={media[0].alt}
           className="w-full h-full rounded-lg object-cover"
         />
       </div>
-      <div className="w-[35%] h-[500px] rounded-lg  grid grid-cols-2 grid-rows-2 gap-2 relative">
+      <div className="w-full md:w-[35%] h-auto md:h-[500px] rounded-lg  grid grid-cols-2 grid-rows-2 gap-2 relative">
         {media.slice(1).map((item, index) => {
           if (index <= 3) {
             return (
@@ -90,6 +99,8 @@ const Venue = () => {
 
   const venue: venueType = data.data;
 
+  const isOwner = venue.owner?.name === user.name;
+
   const {
     media,
     name,
@@ -103,13 +114,15 @@ const Venue = () => {
     bookings,
   } = venue;
 
+  console.log(bookings);
+
   return (
     <div className="flex flex-col w-screen h-auto pt-12">
-      <h1 className="w-screen px-36 text-3xl font-title">{name}</h1>
+      <h1 className="w-screen px-2 md:px-36 text-3xl font-title">{name}</h1>
       <VenueMedia media={media} />
-      <section className="w-screen px-36 flex gap-3 pb-20 relative">
-        <div className="w-[65%] h-auto   flex items-start flex-col p-4 gap-6">
-          <div className="w-full h-auto   flex items-start  gap-6">
+      <section className="w-screen px-2 md:px-36 flex flex-col md:flex-row gap-3 pb-20 relative">
+        <div className="w-full md:w-[65%] h-auto   flex items-start flex-col p-4 gap-6">
+          <div className="w-full h-auto   flex items-start flex-wrap  gap-6">
             <p className=" flex gap-2 items-center text-lg">
               <Globe size={24} strokeWidth={1} />
               {location.city} - {location.country}
@@ -188,7 +201,7 @@ const Venue = () => {
             <div className="text-zinc-500">{description}</div>
           </div>
         </div>
-        <div className="w-[35%] sticky top-12 h-fit shadow-lg bg-white flex flex-col justify-between gap-3 p-4  rounded-lg text-zinc-500">
+        <div className="w-full md:w-[35%]  md:sticky bottom-0 md:top-12 h-fit shadow-lg bg-white flex flex-col justify-between gap-3 p-4  rounded-lg text-zinc-500">
           <div className="flex flex-col gap-3">
             <div className="flex gap-3 items-center">
               {owner?.avatar && (
@@ -202,16 +215,54 @@ const Venue = () => {
               </div>
             </div>
           </div>
-          <VenuBookingCalendar
-            maxGuests={maxGuests}
-            name={name}
-            bookings={bookings}
-            venueId={venueId}
-            accessToken={accessToken}
-            apiKey={key}
-          />
+          {!isOwner && (
+            <VenuBookingCalendar
+              maxGuests={maxGuests}
+              name={name}
+              bookings={bookings}
+              venueId={venueId}
+              accessToken={accessToken}
+              apiKey={key}
+            />
+          )}
         </div>
       </section>
+      {isOwner && (
+        <section className="w-screen px-36 flex gap-3 pb-20 relative flex-col">
+          {bookings?.length! > 0 ? (
+            <div className=" border-b">
+              <p className="text-lg font-semibold">Bookings</p>
+            </div>
+          ) : (
+            <div>
+              <p className="text-lg h-32 rounded-lg font-semibold  flex items-center justify-center">
+                This venue has no bookings
+              </p>
+            </div>
+          )}
+
+          {bookings &&
+            bookings?.map((booking: any, index: number) => {
+              return (
+                <div
+                  key={index}
+                  className="flex flex-col gap-2  px-2 py-3  border rounded-lg "
+                >
+                  <div className="flex gap-2 text-lg">
+                    {new Date(booking.dateFrom).toDateString()}
+                    <ArrowRight size={24} strokeWidth={1.5} />
+                    {new Date(booking.dateTo).toDateString()}
+                  </div>
+                  <div className="flex flex-col ">
+                    <div>Booked by: {booking.customer.name}</div>
+                    <div>contact: {booking.customer.email}</div>
+                  </div>
+                  <div>Guests: {booking.guests}</div>
+                </div>
+              );
+            })}
+        </section>
+      )}
     </div>
   );
 };

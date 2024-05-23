@@ -114,9 +114,9 @@ const VenuBookingCalendar = ({
           Book this venue
         </HolidazeButton>
       </DialogTrigger>
-      <DialogContent className="w-screen max-w-lg flex flex-col items-center justify-center pb-8 h-[80vh] ">
+      <DialogContent className="w-[98vw] max-w-lg flex flex-col items-center justify-center md:pb-8 h-[95vh] md:h-[90vh] ">
         <DialogTitle className="text-lg">{name}</DialogTitle>
-        <div className="w-full h-full flex flex-col relative  text-zinc-500 text-sm ">
+        <div className="w-full h-full flex flex-col gap-20 mt-10  relative  text-zinc-500 text-sm ">
           <Calendar
             mode="range"
             selected={range}
@@ -124,7 +124,7 @@ const VenuBookingCalendar = ({
             busy={busyDates.flat()}
             onSelect={setRange}
           />
-          <div className="w-full flex flex-col items-start  h-12 mt-32 gap-3">
+          <div className="w-full flex flex-col items-start  h-12 md:mt-20 gap-3">
             <div className="w-full flex gap-6 border-t pt-5">
               <div className="h-full w-auto flex flex-col ">
                 <p>From:</p>

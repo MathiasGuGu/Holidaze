@@ -62,3 +62,21 @@ export async function getVenuesBySearch(
   const data = await res.json();
   return data;
 }
+
+export async function createVenue(
+  data: any,
+  accessToken: string,
+  apiKey: string
+): Promise<any> {
+  const res = await fetch(BASE_URL + "/holidaze" + ApiAuthEndpoints.venues, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+      "X-Noroff-API-Key": apiKey,
+    },
+    body: JSON.stringify(data),
+  });
+  const resData = await res.json();
+  return resData;
+}

@@ -233,17 +233,24 @@ const ProfileVenueShowcase = ({
             {venuesData && venuesData.data.length > 0 && (
               <div className="w-full h-auto grid grid-cols-3 gap-8">
                 {venuesData.data.map((venue, index: number) => (
-                  <div
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index / 30 }}
                     key={index}
-                    className="w-full h-80 bg-gray-300 rounded-lg flex flex-col gap-2"
+                    className="w-full h-48 bg-background rounded-lg flex flex-col gap-2 relative isolate"
                   >
-                    <div className="w-full h-56 bg-gray-300 rounded-lg"></div>
-                    <div className="grid grid-rows-3 w-full  text-sm gap-1">
-                      <div className="flex gap-1 h-8 w-24 bg-zinc-300 rounded "></div>
-                      <div className="bg-zinc-300 w-6 h-8 rounded"></div>
-                    </div>
-                    <div className=" align-bottom bg-zinc-300 w-full h-8 rounded"></div>
-                  </div>
+                    <Link to={`/discover/${venue.id}`}>
+                      <img
+                        className="w-full h-48 object-cover rounded-lg absolute z-10"
+                        src={venue.media[0].url}
+                      ></img>
+                      <div className="w-full h-full bg-text/70 rounded-lg absolute z-20"></div>
+                      <div className="w-full h-full flex flex-col px-6 py-6 z-20 text-white">
+                        <p className="text-sm ">{venue.name}</p>
+                      </div>
+                    </Link>
+                  </motion.div>
                 ))}
               </div>
             )}
