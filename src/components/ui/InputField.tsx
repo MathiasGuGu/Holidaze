@@ -1,7 +1,7 @@
 import { cva } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 import { FormFieldProps } from "../../lib/types";
-import { Eye, EyeOff, EyeOffIcon } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import HolidazeButton from "./HolidazeButton";
 import { useTranslation } from "react-i18next";
@@ -19,7 +19,7 @@ const InputField: React.FC<FormFieldProps> = ({
   const startType = type;
   const [useType, setUseType] = useState(type);
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className="flex flex-col gap-2">
