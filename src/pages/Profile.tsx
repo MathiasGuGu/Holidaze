@@ -75,7 +75,11 @@ const VenueManagerForm = ({
           }}
           className="mt-4 text-lg font-bold bg-purple-400/30 text-purple-800 px-6 py-1 rounded-full"
         >
-          Register as a venue manager
+          {isLoading
+            ? "Loading..."
+            : isError
+            ? "Error"
+            : "Become a venue manager"}
         </button>
       </DialogContent>
     </Dialog>
@@ -102,7 +106,6 @@ const ProfileVenueShowcase = ({
     mutate: getVenues,
     isPending: isVenuesPending,
     data: venuesData,
-    isError: isVenuesError,
   } = useMutation({
     mutationFn: () => getUserVenues(name, accessToken, apiKey),
     mutationKey: ["userVenues", name],

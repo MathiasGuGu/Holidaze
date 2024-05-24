@@ -2,15 +2,9 @@ import { venueType } from "@/lib/types";
 import VenueCardMedia from "./VenueCardMedia";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-const VenueDiscoveryCard = ({
-  post,
-  index,
-}: {
-  post: venueType;
-  index: number;
-}) => {
-  const { media, owner, name, location, price, id, maxGuests } = post;
-  const { address, city, country } = location;
+const VenueDiscoveryCard = ({ post }: { post: venueType }) => {
+  const { media, name, location, price, id } = post;
+  const { city, country } = location;
 
   return (
     <motion.div

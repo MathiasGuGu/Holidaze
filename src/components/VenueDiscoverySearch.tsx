@@ -3,16 +3,13 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 const VenueDiscoverySearch = ({
-  page,
   searchParam,
-  mutation,
 }: {
   page: number;
   searchParam: string;
   mutation: any;
 }) => {
   const [search, setSearch] = useState<string>("");
-  const [searchEmpty, setSearchEmpty] = useState<boolean>(true);
   const { t } = useTranslation();
 
   const navigate = useNavigate();
@@ -37,7 +34,6 @@ const VenueDiscoverySearch = ({
       >
         <input
           onChange={(e) => {
-            setSearchEmpty(false);
             setSearch(e.target.value);
           }}
           type="text"

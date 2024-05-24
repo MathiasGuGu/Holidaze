@@ -68,7 +68,7 @@ function App() {
               viewport={{ once: true }}
               className="w-auto h-auto"
             >
-              <VenueDiscoveryCard index={index} key={post.id} post={post} />
+              <VenueDiscoveryCard key={post.id} post={post} />
             </motion.div>
           ))}
       </section>

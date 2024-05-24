@@ -3,13 +3,12 @@ import HolidazeButton from "@/components/ui/HolidazeButton";
 import { zodResolver } from "@hookform/resolvers/zod";
 import InputField from "../components/ui/InputField";
 import { LoginSchema, RegisterFormData } from "../lib/types";
-import { ApiAuthEndpoints, BASE_URL, createVenue } from "../lib/api";
+import { ApiAuthEndpoints, BASE_URL } from "../lib/api";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useAuthStore } from "../stores/authStore";
 import { useStore } from "zustand";
-import { useMutation } from "@tanstack/react-query";
 
 const Login = () => {
   // TODO: Add form validation

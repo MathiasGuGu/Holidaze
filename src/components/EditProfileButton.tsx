@@ -5,7 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
 import { updateProfile } from "@/lib/api";
-import { useEffect } from "react";
 import { useStore } from "zustand";
 import { useAuthStore } from "@/stores/authStore";
 
@@ -32,19 +31,12 @@ const EditProfileButton = ({
 
   console.log(user);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setError,
-  } = useForm<any>({
+  const { register, handleSubmit } = useForm<any>({
     resolver: zodResolver(editProfileSchema),
   });
 
   const {
-    data: updateData,
     mutate: editProfileMutation,
-    error,
     isError,
     isPending,
   } = useMutation({
@@ -79,7 +71,9 @@ const EditProfileButton = ({
         Edit Profile
       </DialogTrigger>
       <DialogContent className="w-[98vw] max-w-lg flex flex-col items-center justify-center md:pb-8 h-[95vh] md:h-[90vh] ">
-        <DialogTitle className="text-lg"></DialogTitle>
+        <DialogTitle className="text-lg">
+          {isPending ? "Updating..." : "Edit Profile" || isError ? "Error" : ""}
+        </DialogTitle>
         <form
           onSubmit={handleSubmit(editProfileHandler)}
           className="grid grid-rows-1  w-full gap-5 text-zinc-500"

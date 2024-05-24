@@ -3,7 +3,6 @@ import HolidazeButton from "@/components/ui/HolidazeButton";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { AnimatePresence, motion } from "framer-motion";
 import { useSearchQueryStore } from "@/stores/searchQueryStore";
 import { useStore } from "zustand";
 
@@ -14,34 +13,14 @@ const Searchbar = () => {
 
   const store: any = useStore(useSearchQueryStore);
 
-  const recentSearches = store.recentSearches;
   const saveData = store.saveData;
 
   // TODO: Import user profile type
-  const user: any = store.user;
 
-  const [isSearching, setIsSearching] = useState<boolean>(false);
   const { t } = useTranslation();
   const navigate = useNavigate();
 
   const searchRef = useRef(null);
-
-  const handleClickOutside = (event: any) => {
-    // @ts-ignore
-    if (searchRef.current && !searchRef.current.contains(event.target)) {
-      setIsSearching(false);
-    }
-  };
-
-  useEffect(() => {
-    // Add event listener when the component mounts
-    document.addEventListener("mousedown", handleClickOutside);
-
-    // Clean up the event listener when the component unmounts
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   const handleSubmitSearch = (e: any) => {
     e.preventDefault();
@@ -50,7 +29,6 @@ const Searchbar = () => {
     let query = e.target[0].value;
 
     // Close the search dropdown
-    setIsSearching(false);
 
     // Blur the input field
     e.target[0].blur();
@@ -77,7 +55,6 @@ const Searchbar = () => {
       }}
     >
       <input
-        onFocus={() => setIsSearching(true)}
         placeholder={t("Search") + "..."}
         className="h-10 w-64 focus:outline-1 hidden lg:flex outline-text z-20 px-4 bg-background placeholder:text-sm rounded-full"
       />

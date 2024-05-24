@@ -4,10 +4,8 @@ import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./ui/dialog";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
-import { editVenue, updateProfile } from "@/lib/api";
-import { useEffect, useState } from "react";
-import { useStore } from "zustand";
-import { useAuthStore } from "@/stores/authStore";
+import { editVenue } from "@/lib/api";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface CreateVenueFormData {
@@ -128,19 +126,9 @@ const Input = ({
   );
 };
 
-const editProfileSchema = z.object({
-  avatar: z.string().optional(),
-  avatarAlt: z.string().optional(),
-  banner: z.string().optional(),
-  bannerAlt: z.string().optional(),
-  bio: z.string().optional(),
-  venueManager: z.boolean().optional(),
-});
-
 const EditVenueButton = ({
   accessToken,
   apiKey,
-  name,
   venue,
 }: {
   accessToken: string;
@@ -152,22 +140,16 @@ const EditVenueButton = ({
   const [currentMediaUrl, setCurrentMediaUrl] = useState<string>("");
   const [currentMediaAlt, setCurrentMediaAlt] = useState<string>("");
 
-  const store: any = useStore(useAuthStore);
-  const user = store.user;
-
   const {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
   } = useForm<CreateVenueFormData>({
     resolver: zodResolver(EditVenueSchema),
   });
 
   const {
-    data: updateData,
     mutate: editVenueMutation,
-    error,
     isError,
     isPending,
   } = useMutation({
@@ -192,7 +174,6 @@ const EditVenueButton = ({
       });
     }
 
-    console.log(data);
     editVenueMutation({ data, accessToken, apiKey, venueId: venue.id });
   };
 
@@ -202,7 +183,9 @@ const EditVenueButton = ({
         Edit Venue
       </DialogTrigger>
       <DialogContent className="w-[98vw] max-w-lg overflow-scroll pt-64 flex flex-col items-center justify-center md:pb-8 h-[95vh] md:h-[90vh] ">
-        <DialogTitle className="text-lg"></DialogTitle>
+        <DialogTitle className="text-lg">
+          {isError ? "Error" : isPending ? "Loading" : "Edit Venue"}
+        </DialogTitle>
         <form
           onSubmit={handleSubmit(submitFunction)}
           className=" grid grid-cols-1  md:grid-cols-2 gap-6 w-full max-w-3xl"

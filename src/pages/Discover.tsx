@@ -1,16 +1,12 @@
 import CardList from "@/components/CardList";
 import Pagination from "@/components/Pagination";
 import VenueDiscoveryCard from "@/components/VenueDiscoveryCard";
-import { useFetch } from "@/hooks/useFetch";
-import { BASE_URL, getVenuesBySearch } from "@/lib/api";
+import { getVenuesBySearch } from "@/lib/api";
 import { venueType } from "@/lib/types";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
 import VenueDiscoverySearch from "@/components/VenueDiscoverySearch";
 import VenuePostsEmpty from "@/components/VenuePostsEmpty";
-import { useStore } from "zustand";
-import { useVenueStore } from "@/stores/venueStore";
 import { useMutation } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 
@@ -38,18 +34,9 @@ const PostLoader = () => {
   );
 };
 
-const DiscoverFeed = ({
-  searchParam,
-  searchEmpty,
-}: {
-  searchParam: string;
-  searchEmpty: boolean;
-}) => {
+const DiscoverFeed = ({ searchParam }: { searchParam: string }) => {
   const [page, setPage] = useState(1);
   const [isPostsEmpty, setIsPostsEmpty] = useState(false);
-  const venueStore = useStore(useVenueStore);
-  const storeData = venueStore.pages;
-  const setStoreData = venueStore.setPages;
 
   //   const {
   //     data: posts,
@@ -66,7 +53,6 @@ const DiscoverFeed = ({
     data: posts,
     isPending,
     isError,
-    error,
   } = useMutation({
     mutationFn: ({ searchParam, page }: { searchParam: any; page: any }) =>
       getVenuesBySearch(searchParam, page),
@@ -108,8 +94,8 @@ const DiscoverFeed = ({
             {!isError &&
               !isPending &&
               posts &&
-              posts?.data.map((post: venueType, index: number) => (
-                <VenueDiscoveryCard key={post.id} post={post} index={index} />
+              posts?.data.map((post: venueType) => (
+                <VenueDiscoveryCard key={post.id} post={post} />
               ))}
           </CardList>
           {isPostsEmpty ? (
@@ -132,10 +118,7 @@ const Discover = () => {
   let searchParams = new URLSearchParams(location.search);
   let search = searchParams.get("search");
 
-  const searchIsEmpty =
-    search === null || search === undefined || search.length === 0;
-
-  return <DiscoverFeed searchParam={search!} searchEmpty={searchIsEmpty} />;
+  return <DiscoverFeed searchParam={search!} />;
 };
 
 export default Discover;

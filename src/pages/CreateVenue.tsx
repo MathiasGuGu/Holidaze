@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/stores/authStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useStore } from "zustand";
@@ -146,17 +146,11 @@ const CreateVenue = () => {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
   } = useForm<CreateVenueFormData>({
     resolver: zodResolver(CreateVenueSchema),
   });
 
-  const {
-    mutate: createVenueAction,
-    data,
-    error,
-    isPending,
-  } = useMutation({
+  const { mutate: createVenueAction, isPending } = useMutation({
     mutationFn: (data: any) => createVenue(data, accessToken, apiKey),
   });
 
@@ -341,7 +335,7 @@ const CreateVenue = () => {
           error={errors.location?.lng}
         />
 
-        <button>submit</button>
+        <button>{isPending ? "Creating venue..." : "Create Venue"}</button>
       </form>
     </div>
   );

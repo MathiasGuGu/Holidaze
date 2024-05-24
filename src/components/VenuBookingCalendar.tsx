@@ -39,7 +39,6 @@ const VenuBookingCalendar = ({
   );
   const [range, setRange] = useState<DateRange | undefined>(initialRange);
   const [guestNumber, setGuestNumber] = useState<number>(1);
-  const [rangeError, setRangeError] = useState<string | undefined>(undefined);
 
   function getAllDatesFromRange(start: Date, end: Date) {
     const dates = [];
@@ -61,14 +60,8 @@ const VenuBookingCalendar = ({
 
   const handleBookingSubmit = async () => {
     if (!range) {
-      setRangeError("Please select a date range");
-      return;
+      throw new Error("Range is undefined");
     }
-    if (!guestNumber || guestNumber > maxGuests) {
-      setRangeError("Please select a permitted number of guests");
-      return;
-    }
-
     try {
       setBookingSuccess(BookingStatus.Pending);
       let booking = await fetch(BASE_URL + "/holidaze/bookings", {
@@ -97,7 +90,6 @@ const VenuBookingCalendar = ({
   };
 
   useEffect(() => {
-    setRangeError(undefined);
     // If any day in the range is busy, set the range to undefined
     if (range !== undefined) {
       const dates = getAllDatesFromRange(range.from!, range.to!);
