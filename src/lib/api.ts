@@ -141,7 +141,7 @@ export async function updateProfile(
 
 export async function deleteVenue({ accessToken, apiKey, venueId }: any) {
   try {
-    const res = await fetch(`${BASE_URL}/holidaze/venues/${venueId}`, {
+    await fetch(`${BASE_URL}/holidaze/venues/${venueId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${accessToken}`,
