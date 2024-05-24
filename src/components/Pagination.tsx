@@ -23,7 +23,8 @@ const Pagination = ({ page, pageCount, setPage }: Props) => {
         </button>
         <button
           onClick={() =>
-            setPage((prev: number) => {
+            // @ts-ignore
+            setPage((prev: any) => {
               if (prev - 1 < 1) {
                 return 1;
               }
@@ -41,6 +42,7 @@ const Pagination = ({ page, pageCount, setPage }: Props) => {
       <div className="flex items-center justify-center gap-2">
         <button
           onClick={() =>
+            // @ts-ignore
             setPage((prev: number) => {
               if (prev + 1 > pageCount) {
                 return pageCount;

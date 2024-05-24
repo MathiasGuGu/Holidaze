@@ -1,7 +1,6 @@
 import "./App.css";
 import VenueDiscoveryCard from "./components/VenueDiscoveryCard";
 // import HeroVenueShowcase from "./components/HeroVenueShowcase";
-import HolidazeButton from "./components/ui/HolidazeButton";
 import { useFetch } from "./hooks/useFetch";
 import { BASE_URL } from "./lib/api";
 import HeroShowcase from "./pages/subpages/HeroShowcase";

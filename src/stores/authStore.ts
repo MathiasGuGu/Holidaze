@@ -9,6 +9,7 @@ export const useAuthStore = createStore(
     (set: any) => ({
       login: (userData: userData, accessToken: accessToken) =>
         set(() => ({ isLoggedIn: true, user: userData, accessToken })),
+      revalidate: (userData: userData) => set(() => ({ user: userData })),
       logout: () =>
         set(() => {
           return {

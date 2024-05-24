@@ -9,16 +9,6 @@ export const bookingsLinks = {
       description: "View and manage your bookings",
       path: "/profile?tab=bookings",
     },
-    {
-      name: "Upcoming Bookings",
-      description: "View and manage your upcoming bookings",
-      path: "/profile/bookings?status=upcoming",
-    },
-    {
-      name: "See Venue Bookings",
-      description: "View and manage your venue bookings",
-      path: "/venue-bookings",
-    },
   ],
 };
 

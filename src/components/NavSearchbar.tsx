@@ -27,7 +27,7 @@ const Searchbar = () => {
   const searchRef = useRef(null);
 
   const handleClickOutside = (event: any) => {
-    // ts-ignore
+    // @ts-ignore
     if (searchRef.current && !searchRef.current.contains(event.target)) {
       setIsSearching(false);
     }
