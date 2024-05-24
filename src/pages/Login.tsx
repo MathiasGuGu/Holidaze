@@ -80,7 +80,7 @@ const Login = () => {
 
       console.log(apiKey);
 
-      login({ ...data.data, ...apiKey }, accessToken);
+      login({ ...data.data }, accessToken, apiKey.data);
 
       //   localStorage.setItem("accessToken", accessToken);
       //   localStorage.setItem("data", JSON.stringify(data.data));

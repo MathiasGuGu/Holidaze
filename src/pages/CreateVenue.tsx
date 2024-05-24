@@ -118,7 +118,9 @@ const Input = ({ name, useType, placeholder, register, error }: any) => {
 };
 
 const CreateVenue = () => {
-  const [venueMedia, setVenueMedia] = useState<{}[]>([]); // [url, url, url
+  const [venueMedia, setVenueMedia] = useState<{ url: string; alt: string }[]>(
+    []
+  ); // [url, url, url
   const [currentMediaUrl, setCurrentMediaUrl] = useState<string>("");
   const [currentMediaAlt, setCurrentMediaAlt] = useState<string>("");
 
@@ -137,10 +139,8 @@ const CreateVenue = () => {
     );
   }
 
-  const user = store.user;
-
-  const accessToken = user.accessToken;
-  const apiKey = user.data.key;
+  const accessToken = store.accessToken;
+  const apiKey = store.apiKey.key;
 
   const {
     register,
@@ -161,7 +161,6 @@ const CreateVenue = () => {
   });
 
   const submitFunction = (data: CreateVenueFormData) => {
-    console.log(data);
     data.price = Number(data.price);
     data.maxGuests = Number(data.maxGuests);
     if (data.rating) data.rating = Number(data.rating);
@@ -169,12 +168,10 @@ const CreateVenue = () => {
       data.location.lat = Number(data.location.lat);
     if (data.location && data.location.lng)
       data.location.lng = Number(data.location.lng);
+
+    data.media = venueMedia;
     createVenueAction(data);
   };
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   // TODO: Probably take image urls in a textarea and split them by new line
   return (

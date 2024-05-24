@@ -69,23 +69,9 @@ const EditProfileButton = ({
 
     editProfileMutation(newData);
 
-    if (newData) {
-      // update data in store
-      const newUser = { ...user };
-      newUser.avatar =
-        newData.avatar.url !== "" ? newData.avatar.url : user.avatar;
-      newUser.banner =
-        newData.banner.url !== "" ? newData.banner.url : user.banner;
-      newUser.bio = newData.bio !== "" ? newData.bio : user.bio;
-      newUser.venueManager = newData.venueManager
-        ? newData.venueManager
-        : user.venueManager;
-      //   store.revalidate(newUser);
-    }
+    store.revalidate(name, accessToken, apiKey);
     console.log(data);
   };
-
-  useEffect(() => {}, [updateData, error]);
 
   return (
     <Dialog>

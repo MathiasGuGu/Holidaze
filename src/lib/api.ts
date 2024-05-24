@@ -81,6 +81,34 @@ export async function createVenue(
   return resData;
 }
 
+export async function editVenue({
+  data,
+  accessToken,
+  apiKey,
+  venueId,
+}: {
+  data: any;
+  accessToken: string;
+  apiKey: string;
+  venueId: string;
+}): Promise<any> {
+  const res = await fetch(
+    BASE_URL + "/holidaze" + ApiAuthEndpoints.venues + `/${venueId}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": apiKey,
+      },
+      body: JSON.stringify(data),
+    }
+  );
+  const resData = await res.json();
+  console.log(resData);
+  return resData;
+}
+
 export async function updateProfile(
   data: any,
   accessToken: string,

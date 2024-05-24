@@ -1,3 +1,4 @@
+import EditVenueButton from "@/components/EditVenueButton";
 import VenuBookingCalendar from "@/components/VenuBookingCalendar";
 import HolidazeButton from "@/components/ui/HolidazeButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -33,6 +34,11 @@ const VenueLoading = () => {
 };
 
 const VenueMedia = ({ media }: { media: venueMediaType[] }) => {
+  if (media.length === 0 || !media) {
+    return (
+      <section className="w-screen h-auto min-h-[500px]  flex flex-col md:flex-row items-center justify-center gap-3 pt-6 pb-10 px-2 md:px-36"></section>
+    );
+  }
   return (
     <section className="w-screen h-auto min-h-[500px]  flex flex-col md:flex-row items-center justify-center gap-3 pt-6 pb-10 px-2 md:px-36">
       <div className="w-full md:w-[65%] h-[500px] rounded-lg  relative">
@@ -76,10 +82,8 @@ const Venue = () => {
 
   // TODO: Import user profile type
   const user: any = store.user;
-
-  const { accessToken } = user;
-  const { data: apiKeyData } = user;
-  const { key } = apiKeyData;
+  const accessToken = store.accessToken;
+  const key = store.apiKey.key;
 
   let loc = useLocation();
   let id = loc.pathname.split("/")[loc.pathname.split("/").length - 1];
@@ -114,8 +118,6 @@ const Venue = () => {
     bookings,
   } = venue;
 
-  console.log(bookings);
-
   return (
     <div className="flex flex-col w-screen h-auto pt-12">
       <h1 className="w-screen px-2 md:px-36 text-3xl font-title">{name}</h1>
@@ -137,6 +139,16 @@ const Venue = () => {
               {price}nok
               <p className="text-sm text-zinc-500">(per night)</p>
             </div>
+          </div>
+          <div>
+            {isOwner && (
+              <EditVenueButton
+                venue={venue}
+                accessToken={accessToken}
+                apiKey={key}
+                name={name}
+              />
+            )}
           </div>
 
           <div className="flex flex-col gap-6 my-6 border-t border-b w-full py-4">
