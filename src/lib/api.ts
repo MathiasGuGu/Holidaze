@@ -68,17 +68,21 @@ export async function createVenue(
   accessToken: string,
   apiKey: string
 ): Promise<any> {
-  const res = await fetch(BASE_URL + "/holidaze" + ApiAuthEndpoints.venues, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${accessToken}`,
-      "X-Noroff-API-Key": apiKey,
-    },
-    body: JSON.stringify(data),
-  });
-  const resData = await res.json();
-  return resData;
+  try {
+    const res = await fetch(BASE_URL + "/holidaze" + ApiAuthEndpoints.venues, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": apiKey,
+      },
+      body: JSON.stringify(data),
+    });
+    const resData = await res.json();
+    return resData;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export async function editVenue({
@@ -92,21 +96,25 @@ export async function editVenue({
   apiKey: string;
   venueId: string;
 }): Promise<any> {
-  const res = await fetch(
-    BASE_URL + "/holidaze" + ApiAuthEndpoints.venues + `/${venueId}`,
-    {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-        "X-Noroff-API-Key": apiKey,
-      },
-      body: JSON.stringify(data),
-    }
-  );
-  const resData = await res.json();
-  console.log(resData);
-  return resData;
+  try {
+    const res = await fetch(
+      BASE_URL + "/holidaze" + ApiAuthEndpoints.venues + `/${venueId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+          "X-Noroff-API-Key": apiKey,
+        },
+        body: JSON.stringify(data),
+      }
+    );
+    const resData = await res.json();
+    console.log(resData);
+    return resData;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export async function updateProfile(
@@ -129,4 +137,18 @@ export async function updateProfile(
   );
   const resData = await res.json();
   return resData;
+}
+
+export async function deleteVenue({ accessToken, apiKey, venueId }: any) {
+  try {
+    const res = await fetch(`${BASE_URL}/holidaze/venues/${venueId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": apiKey,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  }
 }

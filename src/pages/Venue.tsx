@@ -1,3 +1,4 @@
+import DeleteVenueButton from "@/components/DeleteVenueButton";
 import EditVenueButton from "@/components/EditVenueButton";
 import VenuBookingCalendar from "@/components/VenuBookingCalendar";
 import HolidazeButton from "@/components/ui/HolidazeButton";
@@ -140,7 +141,7 @@ const Venue = () => {
               <p className="text-sm text-zinc-500">(per night)</p>
             </div>
           </div>
-          <div>
+          <div className="flex flex-wrap gap-4 items-center">
             {isOwner && (
               <EditVenueButton
                 venue={venue}
@@ -149,6 +150,11 @@ const Venue = () => {
                 name={name}
               />
             )}
+            <DeleteVenueButton
+              accessToken={accessToken}
+              apiKey={key}
+              venueId={venueId}
+            />
           </div>
 
           <div className="flex flex-col gap-6 my-6 border-t border-b w-full py-4">
