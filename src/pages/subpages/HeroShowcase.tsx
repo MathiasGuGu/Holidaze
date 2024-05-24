@@ -26,7 +26,7 @@ const HeroShowcase = () => {
             animate={{ x: 0, y: "-50%" }}
             transition={{ duration: 1 }}
             style={{ x: x, y: "-50%" }}
-            src="../../../public/apart3.jpeg"
+            src="/apart3.jpeg"
             alt="apart1"
             className=" h-[95%] md:h-3/4  aspect-[10/16] object-cover absolute -left-[200px] top-1/2 -translate-y-1/2"
           />
@@ -35,7 +35,7 @@ const HeroShowcase = () => {
             animate={{ x: 0, y: "-50%" }}
             transition={{ duration: 1, delay: 0.2 }}
             style={{ x: x, y: "-50%" }}
-            src="../../../public/apart5.jpeg"
+            src="/apart5.jpeg"
             alt="apart1"
             className=" h-[95%] md:h-3/4 aspect-[10/16] object-cover absolute left-[100px] md:left-[200px] top-1/2 -translate-y-1/2"
           />
@@ -44,7 +44,7 @@ const HeroShowcase = () => {
             animate={{ x: 0, y: "-50%" }}
             transition={{ duration: 1, delay: 0.4 }}
             style={{ x: x, y: "-50%" }}
-            src="../../../public/apart4.jpeg"
+            src="/apart4.jpeg"
             alt="apart1"
             className="  h-[95%] md:h-3/4 aspect-[10/16] object-cover absolute left-[400px] md:left-[600px] top-1/2 -translate-y-1/2"
           />
@@ -106,7 +106,7 @@ const HeroShowcase = () => {
             <div className="w-full h-full relative">
               <motion.img
                 style={{ y: y, opacity: opacity }}
-                src="../../../public/apart3.jpeg"
+                src="/apart3.jpeg"
                 alt="apart1"
                 className="w-full h-full object-cover  "
               ></motion.img>
@@ -122,7 +122,7 @@ const HeroShowcase = () => {
             <div className="w-full h-full relative">
               <motion.img
                 style={{ y: y2, opacity: opacity }}
-                src="../../../public/apart7.jpeg"
+                src="/apart7.jpeg"
                 alt="apart1"
                 className="w-full h-full object-cover z-10"
               ></motion.img>
