@@ -35,7 +35,9 @@ const Navbar = () => {
     <nav className="w-screen h-16 z-50 bg-white  relative flex items-center justify-between px-3 md:px-12 font-para">
       <div className="flex gap-2 items-center">
         <MobileNavDropdown />
-        <p className="font-title text-text text-xl md:text-2xl">Holidaze</p>
+        <Link to={"/"} className="font-title text-text text-xl md:text-2xl">
+          Holidaze
+        </Link>
         <NavigationMenu className=" ml-4 hidden lg:flex">
           <NavigationMenuList>
             <NavigationMenuItem>
