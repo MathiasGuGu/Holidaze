@@ -15,6 +15,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useStore } from "zustand";
 import { useMutation } from "@tanstack/react-query";
 import EditProfileButton from "@/components/EditProfileButton";
+import { useTranslation } from "react-i18next";
 
 const VenueManagerForm = ({
   name,
@@ -25,6 +26,8 @@ const VenueManagerForm = ({
   accessToken: string;
   apiKey: string;
 }) => {
+  const { t } = useTranslation();
+
   const store: any = useStore(useAuthStore);
   const user = store.user;
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -58,15 +61,18 @@ const VenueManagerForm = ({
     <Dialog>
       <DialogTrigger className="w-full mt-4">
         <div className="mt-4 text-lg font-bold bg-purple-400/30 text-purple-800 px-6 py-1 rounded-full">
-          Sign Up Here
+          {t("Sign Up Here")}
         </div>
       </DialogTrigger>
       <DialogContent className="h-auto ">
-        <DialogTitle className="text-2xl">Become a venue manager</DialogTitle>
+        <DialogTitle className="text-2xl">
+          {t("Become a venue manager")}
+        </DialogTitle>
         <DialogDescription>
           <p>
-            Become a venue manager and view your active venues. You can also
-            manage your venues and bookings
+            {t(
+              "Become a venue manager and view your active venues. You can also manage your bookings"
+            )}
           </p>
         </DialogDescription>
         <button
@@ -99,6 +105,7 @@ const ProfileVenueShowcase = ({
   apiKey: string;
   tab: string;
 }) => {
+  const { t } = useTranslation();
   console.log(apiKey);
   console.log(accessToken);
 
@@ -142,7 +149,7 @@ const ProfileVenueShowcase = ({
             [" bg-background text-purple-800 "]: tab === "venues",
           })}
         >
-          Venues
+          {t("Venues")}
         </Link>
         <Link
           to={"/profile?tab=bookings"}
@@ -152,7 +159,7 @@ const ProfileVenueShowcase = ({
             [" bg-background text-purple-800 "]: tab === "bookings",
           })}
         >
-          Bookings
+          {t("Bookings")}
         </Link>
       </div>
       <section className="w-full mt-8  h-auto min-h-80">
@@ -161,8 +168,10 @@ const ProfileVenueShowcase = ({
             <div className="w-full h-96  flex flex-col items-center gap-4 justify-center font-para">
               <Star size={56} strokeWidth={1} className=" text-purple-400" />
               <div className="flex flex-col items-center justify-center">
-                <h3 className="text-2xl font-title">Become a venue manager</h3>
-                <p>Become a venue manager and view your active venues</p>
+                <h3 className="text-2xl font-title">
+                  {t("Become a venue manager")}
+                </h3>
+                <p>{t("Become a venue manager and view your active venues")}</p>
                 <VenueManagerForm
                   name={name}
                   accessToken={accessToken}
@@ -193,14 +202,14 @@ const ProfileVenueShowcase = ({
                   >
                     <Wand2 strokeWidth={1} size={32} />
                     <p className="text-xl font-title font-bold">
-                      Add your first venue
+                      {t("Add your first venue")}
                     </p>
 
                     <Link
                       to={"/venues/create"}
                       className="bg-purple-200 text-purple-800 px-8 py-2 rounded-full mt-2"
                     >
-                      Add Venue
+                      {t("Add Venue")}
                     </Link>
                   </motion.div>
                   {new Array(7).fill(0).map((_, index) => (
@@ -230,10 +239,14 @@ const ProfileVenueShowcase = ({
                       className="w-full h-48 bg-background rounded-lg flex flex-col gap-2 relative isolate"
                     >
                       <Link className="isolate" to={`/discover/${venue.id}`}>
-                        <img
-                          className="w-full h-48 object-cover rounded-lg absolute z-10"
-                          src={venue.media[0].url}
-                        ></img>
+                        {venue.media.length > 1 ? (
+                          <img
+                            className="w-full h-48 object-cover rounded-lg absolute z-10"
+                            src={venue.media[0].url}
+                          ></img>
+                        ) : (
+                          <div className="w-full h-48"></div>
+                        )}
                       </Link>
                     </motion.div>
                   ))}
@@ -253,7 +266,7 @@ const ProfileVenueShowcase = ({
                 <Ghost size={56} strokeWidth={1} />
                 <div className="flex flex-col items-center">
                   <h3 className="text-2xl">
-                    You do not have any active bookings
+                    {t("You do not have any active bookings")}
                   </h3>
                 </div>
               </div>
@@ -300,6 +313,7 @@ const Profile = () => {
     window.location.href = "/profile?tab=venues";
   }
 
+  const { t } = useTranslation();
   const store: any = useStore(useAuthStore);
   const isLoggedIn = store.isLoggedIn;
 
@@ -342,11 +356,11 @@ const Profile = () => {
               <div>
                 {isVenueManager ? (
                   <div className=" bg-purple-100 text-purple-600 px-4 py-1 font-bold rounded-full">
-                    Venue Manager
+                    {t("Venue Manager")}
                   </div>
                 ) : (
                   <div className="  bg-purple-100 text-purple-600 px-4 py-1 font-bold rounded-full ">
-                    Not a venue manager
+                    {t("Not a venue manager")}
                   </div>
                 )}
               </div>

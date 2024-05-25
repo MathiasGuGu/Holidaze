@@ -50,17 +50,23 @@ export async function getVenuesBySearch(
   searchParam: string = "",
   page: number
 ): Promise<any> {
-  let res;
-  if (searchParam === "") {
-    res = await fetch(`${BASE_URL}/holidaze/venues?page=${page}`);
-  } else {
-    res = await fetch(
-      `${BASE_URL}/holidaze/venues/search?q=${searchParam}&page=${page}`
-    );
-  }
+  try {
+    let res;
+    if (searchParam === "") {
+      res = await fetch(
+        `${BASE_URL}/holidaze/venues?page=${page}&sort=created&sortOrder=desc`
+      );
+    } else {
+      res = await fetch(
+        `${BASE_URL}/holidaze/venues/search?q=${searchParam}&page=${page}&sort=created&sortOrder=desc`
+      );
+    }
 
-  const data = await res.json();
-  return data;
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export async function createVenue(
@@ -79,6 +85,7 @@ export async function createVenue(
       body: JSON.stringify(data),
     });
     const resData = await res.json();
+    console.log(resData);
     return resData;
   } catch (error) {
     console.error(error);

@@ -9,6 +9,7 @@ import { Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useAuthStore } from "../stores/authStore";
 import { useStore } from "zustand";
+import { redirect } from "react-router-dom";
 
 const Login = () => {
   // TODO: Add form validation
@@ -85,6 +86,7 @@ const Login = () => {
       //   localStorage.setItem("data", JSON.stringify(data.data));
 
       setLoading(false);
+      redirect("/");
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -93,41 +95,51 @@ const Login = () => {
   };
 
   return (
-    <div className="w-screen h-auto py-12 flex items-center justify-center">
-      <form
-        onSubmit={handleSubmit(submitFunction)}
-        className="flex flex-col gap-2"
-      >
-        <InputField
-          type="text"
-          placeholder="Email"
-          name="email"
-          variant="tertiary"
-          register={register}
-          error={errors.email}
-        ></InputField>
-        <InputField
-          type="password"
-          placeholder="Password"
-          name="password"
-          variant="tertiary"
-          register={register}
-          error={errors.password}
-        ></InputField>
-
-        <HolidazeButton
-          id="submit-login-button"
-          type="submit"
-          variant="primary"
-          size="md"
+    <div className="w-screen h-auto  flex items-center justify-center">
+      <div className="w-[50vw] h-auto hidden min-h-screen md:flex flex-col items-center justify-center   bg-gradient-to-br from-blue-50 to-blue-300"></div>
+      <section className="w-full py-64 md:py-0  md:w-1/2 h-auto flex flex-col items-center justify-center  ">
+        <form
+          onSubmit={handleSubmit(submitFunction)}
+          className="flex flex-col gap-4  w-full xl:w-1/2 px-4  "
         >
-          {loading ? (
-            <Loader2 className="animate-spin" strokeWidth={1.5} size={22} />
-          ) : (
-            t("Submit")
-          )}
-        </HolidazeButton>
-      </form>
+          <div className="flex flex-col gap-1">
+            <h1 className="text-4xl font-bold font-title">Welcome Back!</h1>
+            <h2 className="text-lg text-zinc-500">Sign in to your account</h2>
+          </div>
+          <InputField
+            type="text"
+            placeholder="Email"
+            name="email"
+            variant="tertiary"
+            className="w-[350px]"
+            register={register}
+            error={errors.email}
+          ></InputField>
+          <InputField
+            type="password"
+            placeholder="Password"
+            name="password"
+            variant="tertiary"
+            className="w-[350px]"
+            register={register}
+            error={errors.password}
+          ></InputField>
+
+          <HolidazeButton
+            id="submit-login-button"
+            type="submit"
+            variant="primary"
+            size="md"
+          >
+            {loading ? (
+              <Loader2 className="animate-spin" strokeWidth={1.5} size={22} />
+            ) : (
+              t("Submit")
+            )}
+          </HolidazeButton>
+        </form>
+      </section>
+
       {isError && (
         <span className="text-danger">{t("Invalid credentials")}</span>
       )}

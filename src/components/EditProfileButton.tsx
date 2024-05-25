@@ -7,6 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { updateProfile } from "@/lib/api";
 import { useStore } from "zustand";
 import { useAuthStore } from "@/stores/authStore";
+import { useTranslation } from "react-i18next";
 
 const editProfileSchema = z.object({
   avatar: z.string().optional(),
@@ -27,9 +28,8 @@ const EditProfileButton = ({
   name: string;
 }) => {
   const store: any = useStore(useAuthStore);
-  const user = store.user;
 
-  console.log(user);
+  const { t } = useTranslation();
 
   const { register, handleSubmit } = useForm<any>({
     resolver: zodResolver(editProfileSchema),
@@ -68,7 +68,7 @@ const EditProfileButton = ({
   return (
     <Dialog>
       <DialogTrigger className=" mt-4 text-white h-12 w-32 rounded-full bg-text">
-        Edit Profile
+        {t("Edit Profile")}
       </DialogTrigger>
       <DialogContent className="w-[98vw] max-w-lg flex flex-col items-center justify-center md:pb-8 h-[95vh] md:h-[90vh] ">
         <DialogTitle className="text-lg">
@@ -79,7 +79,7 @@ const EditProfileButton = ({
           className="grid grid-rows-1  w-full gap-5 text-zinc-500"
         >
           <div className="w-full h-32 bg-gradient-to-tr from-blue-200 text-3xl font-title text-blue-300 font-bold to-blue-50 rounded-lg grid place-items-center">
-            Edit Profile
+            {t("Edit Profile")}
           </div>
           <div className="w-full ">
             <p>Enter a new avatar url</p>
@@ -87,7 +87,7 @@ const EditProfileButton = ({
               {...register("avatar")}
               id="avatar"
               name="avatar"
-              className=" h-10 w-full bg-background rounded-lg "
+              className=" h-10 w-full px-4 bg-background rounded-lg "
               type="text"
               placeholder="avatar"
             />
@@ -98,7 +98,7 @@ const EditProfileButton = ({
               {...register("avatarAlt")}
               id="avatarAlt"
               name="avatarAlt"
-              className=" h-10 w-full bg-background rounded-lg "
+              className=" h-10 w-full px-4 bg-background rounded-lg "
               type="text"
               placeholder="avatar alt"
             />
@@ -109,7 +109,7 @@ const EditProfileButton = ({
               {...register("banner")}
               id="banner"
               name="banner"
-              className=" h-10 w-full bg-background rounded-lg "
+              className=" h-10 w-full px-4 bg-background rounded-lg "
               type="text"
               placeholder="banner"
             />
@@ -120,7 +120,7 @@ const EditProfileButton = ({
               {...register("bannerAlt")}
               id="bannerAlt"
               name="bannerAlt"
-              className=" h-10 w-full bg-background rounded-lg "
+              className=" h-10 w-full px-4 bg-background rounded-lg "
               type="text"
               placeholder="banner alt"
             />
@@ -131,7 +131,7 @@ const EditProfileButton = ({
               {...register("bio")}
               name="bio"
               id="bio"
-              className=" h-10 w-full bg-background rounded-lg "
+              className=" h-10 px-4  w-full bg-background rounded-lg "
               type="text"
               placeholder="bio"
             />

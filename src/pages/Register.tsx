@@ -61,103 +61,121 @@ const Register = () => {
 
   return (
     <div className="w-screen h-auto py-12 flex items-center justify-center">
-      <form
-        onSubmit={handleSubmit(FormSubmitAction)}
-        className="flex flex-col gap-8 w-full items-center "
-      >
-        <div className="flex">
-          <InputField
-            type="text"
-            placeholder="Name"
-            name="name"
-            variant="tertiary"
-            register={register}
-            error={errors.name}
-          ></InputField>
-          <InputField
-            type="text"
-            placeholder="Email"
-            name="email"
-            variant="tertiary"
-            register={register}
-            error={errors.email}
-          ></InputField>
+      <div className="w-[50vw] h-auto hidden min-h-screen md:flex flex-col items-center justify-center   bg-gradient-to-br from-blue-50 to-blue-300"></div>
+      <div className="w-full md:w-[50vw]">
+        <div className="flex flex-col gap-2 md:px-32 px-2 text-center">
+          <h1 className="text-4xl font-bold font-title">Register</h1>
+          <h2 className="text-lg text-zinc-500">
+            {t("Create an account to get started")}
+          </h2>
         </div>
-        <InputField
-          type="password"
-          placeholder="Password"
-          name="password"
-          variant="tertiary"
-          register={register}
-          error={errors.password}
-        ></InputField>
-        <InputField
-          type="text"
-          placeholder="Bio"
-          name="bio"
-          variant="tertiary"
-          register={register}
-          error={errors.bio}
-        ></InputField>
-        <div className="flex">
+        <form
+          onSubmit={handleSubmit(FormSubmitAction)}
+          className="flex flex-col gap-8 md:px-32 w-full px-2 py-20 items-start "
+        >
+          <div className="flex gap-2 flex-wrap">
+            <InputField
+              type="text"
+              placeholder="Name"
+              name="name"
+              variant="tertiary"
+              className="w-[350px]"
+              register={register}
+              error={errors.name}
+            ></InputField>
+            <InputField
+              type="text"
+              placeholder="Email"
+              name="email"
+              variant="tertiary"
+              className="w-[350px]"
+              register={register}
+              error={errors.email}
+            ></InputField>
+          </div>
           <InputField
-            type="text"
-            placeholder="Banner Url"
-            name="bannerUrl"
+            type="password"
+            placeholder="Password"
+            name="password"
+            className="w-[350px]"
             variant="tertiary"
             register={register}
-            error={errors.bannerUrl}
+            error={errors.password}
           ></InputField>
           <InputField
             type="text"
-            placeholder="Banner Alt"
-            name="bannerAlt"
+            placeholder="Bio"
+            name="bio"
+            className="w-[350px]"
             variant="tertiary"
             register={register}
-            error={errors.bannerAlt}
+            error={errors.bio}
           ></InputField>
-        </div>
-        <div className="flex">
-          <InputField
-            type="text"
-            placeholder="Avatar Url"
-            name="avatarUrl"
-            variant="tertiary"
-            register={register}
-            error={errors.avatarUrl}
-          ></InputField>
-          <InputField
-            type="text"
-            placeholder="Avatar Alt"
-            name="avatarAlt"
-            variant="tertiary"
-            register={register}
-            error={errors.avatarAlt}
-          ></InputField>
+          <div className="flex flex-wrap gap-2">
+            <InputField
+              type="text"
+              className="w-[350px]"
+              placeholder="Banner Url"
+              name="bannerUrl"
+              variant="tertiary"
+              register={register}
+              error={errors.bannerUrl}
+            ></InputField>
+            <InputField
+              type="text"
+              placeholder="Banner Alt"
+              name="bannerAlt"
+              className="w-[350px]"
+              variant="tertiary"
+              register={register}
+              error={errors.bannerAlt}
+            ></InputField>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <InputField
+              type="text"
+              placeholder="Avatar Url"
+              name="avatarUrl"
+              variant="tertiary"
+              className="w-[350px]"
+              register={register}
+              error={errors.avatarUrl}
+            ></InputField>
+            <InputField
+              type="text"
+              placeholder="Avatar Alt"
+              name="avatarAlt"
+              className="w-[350px]"
+              variant="tertiary"
+              register={register}
+              error={errors.avatarAlt}
+            ></InputField>
+          </div>
           <SelectInput
             type="checkbox"
             name="venueManager"
+            placeholder="Venue manager?"
             register={register}
           ></SelectInput>
-        </div>
-        {isError && (
-          <span id="error" className="text-danger">
-            {isError && errors.name?.message}
-          </span>
-        )}
-        <HolidazeButton
-          id="submit-register-button"
-          type="submit"
-          variant="primary"
-          size="md"
-        >
-          {loading ? (
-            <Loader2 className="animate-spin" strokeWidth={1.5} size={22} />
-          ) : (
-            t("Submit")
+          {isError && (
+            <span id="error" className="text-danger">
+              {isError && errors.name?.message}
+            </span>
           )}
-        </HolidazeButton>
-      </form>
+          <HolidazeButton
+            id="submit-register-button"
+            type="submit"
+            variant="primary"
+            size="md"
+          >
+            {loading ? (
+              <Loader2 className="animate-spin" strokeWidth={1.5} size={22} />
+            ) : (
+              t("Submit")
+            )}
+          </HolidazeButton>
+        </form>
+      </div>
     </div>
   );
 };

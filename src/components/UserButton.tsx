@@ -30,10 +30,14 @@ const UserButton = ({ imageSrc }: { imageSrc: string }) => {
           <DropdownMenuLabel> {t("My account")}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <Link to="/profile">{t("Profile")}</Link>
+            <Link to="/profile?tab=venues">{t("Profile")}</Link>
           </DropdownMenuItem>
-          <DropdownMenuItem>{t("Bookings")}</DropdownMenuItem>
-          <DropdownMenuItem>{t("Venues")}</DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link to="/profile?tab=bookings">{t("Bookings")}</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link to="/profile?tab=venues">{t("Venues")}</Link>
+          </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onClick={() => {

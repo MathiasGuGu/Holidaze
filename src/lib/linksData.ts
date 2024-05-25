@@ -70,18 +70,13 @@ export const navLinks = [
       {
         name: "Upcoming Bookings",
         description: "View and manage your upcoming bookings",
-        path: "/profile/bookings?status=upcoming",
+        path: "/profile?tab=bookings",
       },
       {
         name: "See Venue Bookings",
         description: "View and manage your venue bookings",
-        path: "/venue-bookings",
+        path: "/profile?tab=venues",
       },
     ],
-  },
-  {
-    name: "Contact",
-    path: "/contact",
-    onlyMobile: true,
   },
 ];

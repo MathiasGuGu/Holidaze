@@ -20,7 +20,6 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { t } from "i18next";
 
 const Navbar = () => {
   const store: any = useStore(useAuthStore);
@@ -45,45 +44,50 @@ const Navbar = () => {
                   {t(`Home`)}
                 </NavigationMenuLink>
               </Link>
+              <Link to="/discover?search=">
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  {t(`Discover`)}
+                </NavigationMenuLink>
+              </Link>
             </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger> {t(`Bookings`)}</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className=" w-[400px] gap-3 p-4 md:w-[500px] flex flex-col lg:w-[400px] ">
-                  {bookingsLinks.children?.map((component) => (
-                    <ListItem
-                      key={component.name}
-                      title={component.name}
-                      href={component.path}
-                    >
-                      {component.description}
-                    </ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>{t(`Venues`)}</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className=" w-[400px] gap-3 p-4 md:w-[500px] flex flex-col lg:w-[400px] ">
-                  {venuesLinks.children?.map((component) => (
-                    <ListItem
-                      key={component.name}
-                      title={component.name}
-                      href={component.path}
-                    >
-                      {component.description}
-                    </ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
+            {isLoggedIn && (
+              <NavigationMenuItem>
+                <NavigationMenuTrigger> {t(`Bookings`)}</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className=" w-[400px] gap-3 p-4 md:w-[500px] flex flex-col lg:w-[400px] ">
+                    {bookingsLinks.children?.map((component) => (
+                      <ListItem
+                        key={component.name}
+                        title={component.name}
+                        href={component.path}
+                      >
+                        {component.description}
+                      </ListItem>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            )}
+            {isLoggedIn && (
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>{t(`Venues`)}</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className=" w-[400px] gap-3 p-4 md:w-[500px] flex flex-col lg:w-[400px] ">
+                    {venuesLinks.children?.map((component) => (
+                      <ListItem
+                        key={component.name}
+                        title={component.name}
+                        href={component.path}
+                      >
+                        {component.description}
+                      </ListItem>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            )}
           </NavigationMenuList>
         </NavigationMenu>
-
-        {/* {navLinks.map((link, index) => (
-            <NavbarLink link={link} index={index} key={index} />
-          ))} */}
       </div>
 
       <div className="flex items-center gap-1 relative  ">
@@ -126,6 +130,8 @@ const ListItem = React.forwardRef<
   React.ElementRef<"a">,
   React.ComponentPropsWithoutRef<"a">
 >(({ className, title, children, href, ...props }) => {
+  const { t } = useTranslation();
+
   return (
     <li>
       <NavigationMenuLink asChild>

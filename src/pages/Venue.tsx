@@ -83,6 +83,7 @@ const Venue = () => {
 
   // TODO: Import user profile type
   const user: any = store.user;
+  const isLoggedIn = store.isLoggedIn;
   const accessToken = store.accessToken;
   const key = store.apiKey.key;
 
@@ -103,8 +104,12 @@ const Venue = () => {
   }
 
   const venue: venueType = data.data;
-
-  const isOwner = venue.owner?.name === user.name;
+  let isOwner = false;
+  if (!isLoggedIn) {
+    isOwner = false;
+  } else {
+    isOwner = venue.owner?.name === user.name;
+  }
 
   const {
     media,
@@ -121,12 +126,14 @@ const Venue = () => {
 
   return (
     <div className="flex flex-col w-screen h-auto pt-12">
-      <h1 className="w-screen px-2 md:px-36 text-3xl font-title">{name}</h1>
+      <h1 className="w-screen px-2 md:px-36 text-3xl font-title max-w-3xl truncate">
+        {name}
+      </h1>
       <VenueMedia media={media} />
       <section className="w-screen px-2 md:px-36 flex flex-col md:flex-row gap-3 pb-20 relative">
         <div className="w-full md:w-[65%] h-auto   flex items-start flex-col p-4 gap-6">
           <div className="w-full h-auto   flex items-start flex-wrap  gap-6">
-            <p className=" flex gap-2 items-center text-lg">
+            <p className=" flex gap-2 items-center text-lg max-w-14 truncate">
               <Globe size={24} strokeWidth={1} />
               {location.city} - {location.country}
             </p>
@@ -150,11 +157,13 @@ const Venue = () => {
                 name={name}
               />
             )}
-            <DeleteVenueButton
-              accessToken={accessToken}
-              apiKey={key}
-              venueId={venueId}
-            />
+            {isOwner && (
+              <DeleteVenueButton
+                accessToken={accessToken}
+                apiKey={key}
+                venueId={venueId}
+              />
+            )}
           </div>
 
           <div className="flex flex-col gap-6 my-6 border-t border-b w-full py-4">
@@ -216,7 +225,9 @@ const Venue = () => {
           </div>
           <div>
             <p className="text-lg font-semibold">Description</p>
-            <div className="text-zinc-500">{description}</div>
+            <div className="text-zinc-500 max-w-3xl truncate overscroll-contain">
+              {description}
+            </div>
           </div>
         </div>
         <div className="w-full md:w-[35%]  md:sticky bottom-0 md:top-12 h-fit shadow-lg bg-white flex flex-col justify-between gap-3 p-4  rounded-lg text-zinc-500">
@@ -233,7 +244,7 @@ const Venue = () => {
               </div>
             </div>
           </div>
-          {!isOwner && (
+          {!isOwner && isLoggedIn && (
             <VenuBookingCalendar
               maxGuests={maxGuests}
               name={name}

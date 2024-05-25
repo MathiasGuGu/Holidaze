@@ -1,8 +1,10 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Plus } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const HeroShowcase = () => {
   const { scrollY } = useScroll();
+  const { t } = useTranslation();
 
   const x = useTransform(scrollY, [0, 3000], [0, 500]);
   const y = useTransform(scrollY, [0, 3500], [0, -700]);
@@ -57,7 +59,7 @@ const HeroShowcase = () => {
             viewport={{ once: true }}
             className=" text-2xl md:text-3xl font-title"
           >
-            Discover the best venues for your next event
+            {t("Discover the best venues for your next event")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -66,9 +68,9 @@ const HeroShowcase = () => {
             viewport={{ once: true }}
             className="text-zinc-500"
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-            ac eros nec nunc ultricies vehicula. Nullam ac nisl nec libero
-            efficitur iaculis
+            {t(
+              "Our venues are located all over the world. You can find the perfect venue for your next vacation or event. The venues are luxurious and offer the best experience you can get. Always secure and reliable."
+            )}
           </motion.p>
         </div>
       </div>
@@ -81,7 +83,7 @@ const HeroShowcase = () => {
             viewport={{ once: true }}
             className="text-2xl md:text-3xl font-title"
           >
-            Become a venue manager and list your venue
+            {t("Become a venue manager and list your venue")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -90,9 +92,9 @@ const HeroShowcase = () => {
             viewport={{ once: true }}
             className="text-zinc-500"
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-            ac eros nec nunc ultricies vehicula. Nullam ac nisl nec libero
-            efficitur iaculis
+            {t(
+              "As a venue manager, you can list your venue on our website. We offer a secure and reliable platform for you to manage your venue. You can reach a global audience and increase your revenue."
+            )}
           </motion.p>
         </div>
         <motion.div

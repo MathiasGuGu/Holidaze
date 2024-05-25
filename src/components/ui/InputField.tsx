@@ -22,15 +22,19 @@ const InputField: React.FC<FormFieldProps> = ({
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col gap-2">
-      <div className="flex flex-col w-fit  gap-2 isolate">
-        <div className="flex relative w-fit ">
+    <div className="flex flex-col gap-2 w-full">
+      <div className="flex flex-col w-full  gap-2 isolate">
+        <div className="flex relative w-full ">
           <input
             id={name + "-input"}
             type={useType}
             placeholder={t(`${placeholder}`)}
             {...register(name)}
-            className={cn(buttonVariants({ variant, size }), className)}
+            className={cn(
+              buttonVariants({ variant, size }),
+              className,
+              "w-full"
+            )}
           />
           {startType === "password" && useType === "password" ? (
             <HolidazeButton
@@ -74,9 +78,9 @@ const buttonVariants = cva("rounded duration-300 w-full ", {
       tertiary: "bg-background text-text ",
     },
     size: {
-      sm: "px-4 py-2  ",
-      md: "px-8 py-2",
-      lg: "px-12 py-2 ",
+      sm: "px-4 py-2 w-full ",
+      md: "px-8 py-2 w-full",
+      lg: "px-12 py-2 w-full",
     },
   },
   defaultVariants: {

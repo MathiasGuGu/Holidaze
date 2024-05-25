@@ -34,19 +34,15 @@ const PostLoader = () => {
   );
 };
 
-const DiscoverFeed = ({ searchParam }: { searchParam: string }) => {
-  const [page, setPage] = useState(1);
+const DiscoverFeed = ({
+  searchParam,
+  startPage,
+}: {
+  searchParam: string;
+  startPage: string;
+}) => {
+  const [page, setPage] = useState(parseInt(startPage));
   const [isPostsEmpty, setIsPostsEmpty] = useState(false);
-
-  //   const {
-  //     data: posts,
-  //     loading,
-  //     error,
-  //   } = searchEmpty
-  //     ? useFetch(`${BASE_URL}/holidaze/venues?page=${page}`)
-  //     : useFetch(
-  //         `${BASE_URL}/holidaze/venues/search?q=${searchParam}&page=${page}`
-  //       );
 
   let {
     mutate: getAllVenues,
@@ -69,6 +65,15 @@ const DiscoverFeed = ({ searchParam }: { searchParam: string }) => {
       setIsPostsEmpty(true);
     }
   }, [posts]);
+
+  useEffect(() => {
+    // push page to url
+    window.history.pushState(
+      {},
+      "",
+      `${window.location.pathname}?search=${searchParam}&page=${page}`
+    );
+  }, [page]);
 
   return (
     <div>
@@ -117,8 +122,17 @@ const Discover = () => {
   let location = useLocation();
   let searchParams = new URLSearchParams(location.search);
   let search = searchParams.get("search");
+  let page = searchParams.get("page");
 
-  return <DiscoverFeed searchParam={search!} />;
+  if (!page || page === "") {
+    page = "1";
+  }
+
+  if (!search || search === "") {
+    search = "";
+  }
+
+  return <DiscoverFeed searchParam={search} startPage={page} />;
 };
 
 export default Discover;
