@@ -6,7 +6,7 @@ import { navLinks } from "@/lib/linksData";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-const MobileNavDropdown = ({ isLoggedIn }: any) => {
+const MobileNavDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
 
