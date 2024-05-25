@@ -13,15 +13,15 @@ TailwindCss + ShadCn
 
 Get started with this project:
 
-```
+```bash
     git pull project
 ```
 
-```
+```bash
     cd project
     npm i
 ```
 
-```
+```bash
     npm run dev
 ```
