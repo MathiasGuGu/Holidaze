@@ -9,7 +9,7 @@ import { Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useAuthStore } from "../stores/authStore";
 import { useStore } from "zustand";
-import { redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   // TODO: Add form validation
@@ -78,15 +78,13 @@ const Login = () => {
       };
       let apiKey: apiKeyType = await apiRes.json();
 
-      console.log(apiKey);
-
       login({ ...data.data }, accessToken, apiKey.data);
 
       //   localStorage.setItem("accessToken", accessToken);
       //   localStorage.setItem("data", JSON.stringify(data.data));
 
       setLoading(false);
-      redirect("/");
+      window.location.href = "/discover";
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -105,6 +103,9 @@ const Login = () => {
           <div className="flex flex-col gap-1">
             <h1 className="text-4xl font-bold font-title">Welcome Back!</h1>
             <h2 className="text-lg text-zinc-500">Sign in to your account</h2>
+            <Link to={"/sign-up"} className="text-sm text-blue-400">
+              Don't have an account? Sign up
+            </Link>
           </div>
           <InputField
             type="text"

@@ -85,7 +85,6 @@ export async function createVenue(
       body: JSON.stringify(data),
     });
     const resData = await res.json();
-    console.log(resData);
     return resData;
   } catch (error) {
     console.error(error);
@@ -117,7 +116,6 @@ export async function editVenue({
       }
     );
     const resData = await res.json();
-    console.log(resData);
     return resData;
   } catch (error) {
     console.error(error);

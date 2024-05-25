@@ -106,8 +106,6 @@ const ProfileVenueShowcase = ({
   tab: string;
 }) => {
   const { t } = useTranslation();
-  console.log(apiKey);
-  console.log(accessToken);
 
   const {
     mutate: getVenues,
@@ -134,9 +132,6 @@ const ProfileVenueShowcase = ({
       getBookings();
     }
   }, [tab]);
-
-  console.log(venuesData);
-  console.log(bookingsData);
 
   return (
     <div className="w-full px-2 md:px-32 flex flex-col">
@@ -317,8 +312,6 @@ const Profile = () => {
   const store: any = useStore(useAuthStore);
   const isLoggedIn = store.isLoggedIn;
 
-  console.log(store);
-
   // TODO: Redirect back
   if (!isLoggedIn) {
     return (
@@ -335,8 +328,6 @@ const Profile = () => {
   const apiKey = store.apiKey.key;
   const name = user.name;
   const isVenueManager = user.venueManager;
-
-  console.log(accessToken);
 
   return (
     <div className="w-screen h-auto flex flex-col relative isolate ">

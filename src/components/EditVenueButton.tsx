@@ -46,9 +46,9 @@ const EditVenueSchema = z.object({
       })
     )
     .optional(),
-  price: z.string().default("0"),
-  maxGuests: z.string().default("0"),
-  rating: z.string().optional().default("0"),
+  price: z.coerce.number().default(0),
+  maxGuests: z.coerce.number().default(0),
+  rating: z.coerce.number().optional().default(0),
   meta: z
     .object({
       wifi: z.boolean().optional(),
@@ -64,8 +64,8 @@ const EditVenueSchema = z.object({
       zip: z.string().optional(),
       country: z.string().optional(),
       continent: z.string().optional(),
-      lat: z.string().optional().default("0"),
-      lng: z.string().optional().default("0"),
+      lat: z.coerce.number().optional().default(0),
+      lng: z.coerce.number().optional().default(0),
     })
     .optional(),
 });
@@ -159,13 +159,6 @@ const EditVenueButton = ({
   });
 
   const submitFunction = (data: any) => {
-    data.price = Number(data.price);
-    data.maxGuests = Number(data.maxGuests);
-    if (data.rating) data.rating = Number(data.rating);
-    if (data.location && data.location.lat)
-      data.location.lat = Number(data.location.lat);
-    if (data.location && data.location.lng)
-      data.location.lng = Number(data.location.lng);
     data.media = venueMedia;
 
     if (data.media.length === 0) {

@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { ApiAuthEndpoints, BASE_URL } from "../lib/api";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   // TODO: Add form validation
@@ -57,17 +58,21 @@ const Register = () => {
 
     // If everything worked, set errors to false just in case
     setIsError(false);
+    window.location.href = "/login";
   };
 
   return (
-    <div className="w-screen h-auto py-12 flex items-center justify-center">
+    <div className="w-screen h-auto flex items-center justify-center">
       <div className="w-[50vw] h-auto hidden min-h-screen md:flex flex-col items-center justify-center   bg-gradient-to-br from-blue-50 to-blue-300"></div>
-      <div className="w-full md:w-[50vw]">
+      <div className="w-full md:w-[50vw] h-auto py-12 ">
         <div className="flex flex-col gap-2 md:px-32 px-2 text-center">
           <h1 className="text-4xl font-bold font-title">Register</h1>
           <h2 className="text-lg text-zinc-500">
             {t("Create an account to get started")}
           </h2>
+          <Link to={"/sign-in"} className="text-sm text-blue-400">
+            {t("Already have an account? Sign in")}
+          </Link>
         </div>
         <form
           onSubmit={handleSubmit(FormSubmitAction)}

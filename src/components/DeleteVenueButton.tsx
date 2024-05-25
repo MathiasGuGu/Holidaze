@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./ui/dialog";
 import { deleteVenue } from "@/lib/api";
 import { useTranslation } from "react-i18next";
+import { Loader2 } from "lucide-react";
 
 const DeleteVenueButton = ({
   accessToken,
@@ -14,7 +15,11 @@ const DeleteVenueButton = ({
 }) => {
   const { t } = useTranslation();
 
-  const { mutate: deleteVenueMutation } = useMutation({
+  const {
+    mutate: deleteVenueMutation,
+    isPending,
+    isError,
+  } = useMutation({
     mutationFn: ({ accessToken, apiKey, venueId }: any) =>
       deleteVenue({ accessToken, apiKey, venueId }),
   });
@@ -22,6 +27,11 @@ const DeleteVenueButton = ({
   const handleDelete = async () => {
     try {
       deleteVenueMutation({ accessToken, apiKey, venueId });
+      if (!isPending && !isError) {
+        setTimeout(() => {
+          window.location.href = "/profile?tab=venues";
+        }, 200);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -47,9 +57,13 @@ const DeleteVenueButton = ({
           </DialogTrigger>
           <button
             onClick={() => handleDelete()}
-            className="w-full md:w-48 h-12 bg-red-200 text-red-600 rounded-full"
+            className="w-full md:w-48 h-12 bg-red-200 text-red-600 rounded-full grid place-items-center"
           >
-            {t("Yes, delete this venue")}
+            {isPending ? (
+              <Loader2 className="animate-spin" />
+            ) : (
+              <p>{t("Yes, delete this venue")}</p>
+            )}
           </button>
         </div>
       </DialogContent>
