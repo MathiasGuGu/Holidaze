@@ -1,27 +1,52 @@
-# Holidaze - Book your dream venue tonight
+# 🌴 Holidaze
 
-Holidaze is a new booking service built to perfection for you. View available venues, Plan the time on the calender, and book.
-You will be out on your dream holida(ze)y in no time!
+**Holidaze** is a booking platform for students at Noroff.  
+It allows users to discover venues and travel destinations with ease — search for new places, explore what they offer, and book directly.
 
-# Tech Stack
+---
 
-React
-Zustand
-TailwindCss + ShadCn
+## ✨ Features
 
-# Start
+Holidaze lets you:
 
-Get started with this project:
+- 🔍 Search for venues
+- 🧭 Discover trendy and popular destinations
+- 🏨 View detailed information about each venue
+- 📅 Reserve specific dates
+- ➕ And more features coming soon!
+
+---
+
+## 🛠️ Built With
+
+- [React.js](https://reactjs.org/)
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [ShadCn UI](https://ui.shadcn.com/)
+- [TanStack Query (React Query)](https://tanstack.com/query/latest)
+
+---
+
+## 🚀 Getting Started
+
+Follow these instructions to get a local copy up and running.
+
+### 📦 Installation
+
+Clone the repository:
 
 ```bash
-    git pull project
+git clone git@github.com:NoroffFEU/portfolio-1-example.git
+```
+Install dependencies:
+
+```bash
+npm install
 ```
 
-```bash
-    cd project
-    npm i
-```
+▶️ Running the App
 
+To run the development server:
 ```bash
-    npm run dev
+npm run dev
 ```
