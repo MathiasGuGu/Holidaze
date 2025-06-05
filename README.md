@@ -36,7 +36,7 @@ Follow these instructions to get a local copy up and running.
 Clone the repository:
 
 ```bash
-git clone git@github.com:NoroffFEU/portfolio-1-example.git
+git clone git@github.com/MathiasGuGu/Holidaze
 ```
 Install dependencies:
 
